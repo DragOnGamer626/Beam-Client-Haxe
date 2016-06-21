@@ -1,6 +1,9 @@
 package pro.beam.api.services.impl;
+import haxe.Log;
+import haxe.io.Error;
 import lime.app.Future;
 import pro.beam.api.BeamAPI;
+import pro.beam.api.response.users.UserSearchResponse;
 import pro.beam.api.services.AbstractHTTPService;
 import pro.beam.api.resource.BeamUser;
 
@@ -28,4 +31,23 @@ class UsersService extends AbstractHTTPService
 	}
 	
 	// Stub
+	
+	public function logout() : Future<String>
+	{
+		return this.delete("current", null, null);
+	}
+	
+	public function search(query : String) : Future<UserSearchResponse>
+	{
+		if (query != null && query.length < 3)
+		{
+			trace("unable to preform search with query less than 3 characters (was " + Std.string(query.length) + ")");
+			throw Error;
+		}
+		
+		else
+		{
+			return null; // Stub
+		}
+	}
 }

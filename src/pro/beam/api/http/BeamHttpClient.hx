@@ -9,6 +9,7 @@ import pro.beam.api.BeamAPI;
 class BeamHttpClient
 {
 	var beam : BeamAPI;
+	
 	public var userAgent(default, set) : String;
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
@@ -17,6 +18,7 @@ class BeamHttpClient
 	public function new(beam : BeamAPI) 
 	{
 		this.beam = beam;
+		
 	}
 	
 	function set_userAgent(userAgent : String)
