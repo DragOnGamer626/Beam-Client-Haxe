@@ -1,4 +1,4 @@
-package src.pro.beam.api.resource.chat.ws;
+package pro.beam.api.resource.chat.ws;
 
 /**
  * ...

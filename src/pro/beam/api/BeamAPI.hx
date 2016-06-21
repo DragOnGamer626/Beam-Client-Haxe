@@ -1,4 +1,5 @@
-package src.pro.beam.api;
+package pro.beam.api;
+import sys.net.Socket;
 
 /**
  * ...
@@ -6,10 +7,15 @@ package src.pro.beam.api;
  */
 class BeamAPI
 {
-
+	public var uri(default, set) : String;
+	
 	public function new() 
 	{
 		
+	}
+	
+	function set_uri(uri) {
+		return this.uri = uri;
 	}
 	
 }

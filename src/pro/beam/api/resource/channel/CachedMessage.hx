@@ -1,4 +1,4 @@
-package src.pro.beam.api.resource.channel;
+package pro.beam.api.resource.channel;
 
 /**
  * ...

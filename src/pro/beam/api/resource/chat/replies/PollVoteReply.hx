@@ -1,4 +1,4 @@
-package src.pro.beam.api.resource.chat.replies;
+package pro.beam.api.resource.chat.replies;
 
 /**
  * ...

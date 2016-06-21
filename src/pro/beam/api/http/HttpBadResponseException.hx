@@ -1,4 +1,4 @@
-package src.pro.beam.api.http;
+package pro.beam.api.http;
 
 /**
  * ...

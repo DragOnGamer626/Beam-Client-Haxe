@@ -1,4 +1,4 @@
-package src.pro.beam.api.futures;
+package pro.beam.api.futures;
 
 /**
  * ...

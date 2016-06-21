@@ -1,4 +1,4 @@
-package src.pro.beam.api.exceptions.validation;
+package pro.beam.api.exceptions.validation;
 
 /**
  * ...

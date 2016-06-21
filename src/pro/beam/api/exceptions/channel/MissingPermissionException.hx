@@ -1,4 +1,4 @@
-package src.pro.beam.api.exceptions.channel;
+package pro.beam.api.exceptions.channel;
 
 /**
  * ...

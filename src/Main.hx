@@ -3,6 +3,7 @@ package;
 import lime.app.Application;
 import lime.graphics.opengl.GL;
 import lime.graphics.RenderContext;
+import pro.beam.api.BeamAPI;
 
 /**
  * ...
@@ -13,10 +14,13 @@ class Main extends Application
 
 	public function new() 
 	{
+		var beam : BeamAPI = new BeamAPI();
+		beam.uri = "Test";
+		trace(beam.uri);
 		super();
 	}
 	
-	public override function init(context:RenderContext):Void 
+	public function init(context:RenderContext):Void 
 	{
 		switch (context) 
 		{
@@ -25,18 +29,4 @@ class Main extends Application
 			default:
 		}
 	}
-	
-	public override function render(context:RenderContext):Void 
-	{
-		switch (context) 
-		{
-			case OPENGL(gl):
-				gl.viewport(0, 0, window.width, window.height);
-				gl.clearColor(1.0, 1.0, 1.0, 1.0);
-				gl.clear(gl.COLOR_BUFFER_BIT);
-				
-			default:
-		}
-	}
-	
 }
