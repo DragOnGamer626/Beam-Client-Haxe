@@ -19,13 +19,13 @@ class UsersService extends AbstractHTTPService
 	
 	public function findOne(id : Int) : Future<BeamUser>
 	{
-		return this.get(Std.string(id), null, null);
+		return this.get(Std.string(id), Type.resolveClass("pro.beam.api.resource.BeamUser"), null);
 	}
 	
-	/*public function refresh() : Future<BeamUser>
+	public function refresh() : Future<BeamUser>
 	{
-		// Stub
-	}*/
+		return this.post("current/refresh", Type.resolveClass("pro.beam.api.resource.BeamUser"), null);
+	}
 	
 	// Stub
 }
