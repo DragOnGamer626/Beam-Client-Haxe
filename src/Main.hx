@@ -19,7 +19,7 @@ class Main extends Application
 		beam.oauthToken = "tOkEn-626";
 		beam.httpUserName = "Deej";
 		beam.httpPassword = "Test";
-		beam.buildJson();
+		beam.run();
 		super();
 	}
 	

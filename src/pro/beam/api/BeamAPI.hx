@@ -1,5 +1,6 @@
 package pro.beam.api;
 import haxe.Json;
+import pro.beam.api.http.BeamHttpClient;
 import sys.net.Socket;
 
 /**
@@ -12,6 +13,8 @@ class BeamAPI
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
+	
+	var http : BeamHttpClient;
 	
 	public function new() 
 	{
@@ -38,7 +41,13 @@ class BeamAPI
 		return this.httpPassword = httpPassword;
 	}
 	
-	public function buildJson() : Void
+	public function run()
+	{
+		buildJson();
+		initVars();
+	}
+	
+	function buildJson() : Void
 	{
 		var uriJSON = Json.stringify({uri : uri});
 		var oauthTokenJSON = Json.stringify({oauthToken : oauthToken});
@@ -49,5 +58,13 @@ class BeamAPI
 		trace(oauthTokenJSON);
 		trace(httpUserNameJSON);
 		trace(httpPasswordJSON);
+	}
+	
+	function initVars()
+	{
+		this.http = new BeamHttpClient(this);
+		http.oauthToken = oauthToken;
+		http.httpUserName = httpUserName;
+		http.httpPassword = httpPassword;
 	}
 }
