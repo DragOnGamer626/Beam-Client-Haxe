@@ -14,7 +14,7 @@ class BeamAPI
 	
 	public function new() 
 	{
-		
+		uri = "https://beam.pro/api/v1/";
 	}
 	
 	function set_uri(uri) 
