@@ -18,4 +18,17 @@ class ServiceManager
 	{
 		return this.services.push(service);
 	}
+	
+	public function unregister(service : AbstractBeamService) : Bool
+	{
+		return this.services.remove(service);
+	}
+	
+	public function unregisterAll() : Void
+	{
+		for (service in this.services.iterator())
+		{
+			this.services.remove(service);
+		}
+	}
 }
