@@ -3,6 +3,7 @@ import haxe.Json;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.services.AbstractBeamService;
 import pro.beam.api.services.ServiceManager;
+import pro.beam.api.services.impl.UsersService;
 import sys.net.Socket;
 
 /**
@@ -49,6 +50,7 @@ class BeamAPI
 		buildJson();
 		initVars();
 		passVarsDown();
+		registerServices();
 	}
 	
 	function buildJson() : Void
@@ -64,13 +66,13 @@ class BeamAPI
 		trace(httpPasswordJSON);
 	}
 	
-	function initVars()
+	function initVars() : Void
 	{
 		this.http = new BeamHttpClient(this);
 		this.services = new ServiceManager();
 	}
 	
-	function passVarsDown()
+	function passVarsDown() : Void
 	{
 		http.oauthToken = oauthToken;
 		http.httpUserName = httpUserName;
@@ -81,5 +83,10 @@ class BeamAPI
 	public function register(service : AbstractBeamService) : Int
 	{
 		return this.services.register(service);
+	}
+	
+	function registerServices() : Void
+	{
+		this.register(new UsersService(this));
 	}
 }

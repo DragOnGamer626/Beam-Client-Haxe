@@ -1,4 +1,5 @@
 package pro.beam.api.http;
+import lime.app.Future;
 import pro.beam.api.BeamAPI;
 
 /**
@@ -37,6 +38,33 @@ class BeamHttpClient
 	{
 		return this.httpPassword = httpPassword;
 	}
+	
+	/*public function get(path : String, type : Type, args : Map<String, Dynamic>) : Future<Type>
+	{
+		// Stub
+	}
+	
+	public function post(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	{
+		// Stub
+	}
+	
+	public function put(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	{
+		// Stub
+	}
+	
+	public function patch(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	{
+		// Stub
+	}
+	
+	public function delete(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	{
+		// Stub
+	}*/
+	
+	// Stub
 	
 	public function printVars()
 	{
