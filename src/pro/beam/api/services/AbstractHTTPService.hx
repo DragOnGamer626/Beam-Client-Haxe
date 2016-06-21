@@ -20,30 +20,30 @@ class AbstractHTTPService extends AbstractBeamService
 		this.path = path;
 	}
 	
-	/*function get(path : String, type : Type, parameters : Map<String, Dynamic>) : Future<Dynamic>
+	function get<T>(path : String, type : Class<T>, parameters : Map<String, Dynamic>) : Future<T>
 	{
 		return this.http.get(this.getPath(path), type, parameters);
 	}
 	
-	function patch(path : String, type : Type, args : Array<Dynamic>) : Future<Dynamic>
+	function patch<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
 		return this.http.patch(this.getPath(path), type, args);
 	}
 	
-	function post(path : String, type : Type, args : Array<Dynamic>) : Future<Dynamic>
+	function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
 		return this.http.post(this.getPath(path), type, args);
 	}
 	
-	function put(path : String, type : Type, args : Array<Dynamic>) : Future<Dynamic>
+	function put<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
 		return this.http.put(this.getPath(path), type, args);
 	}
 	
-	function delete(path : String, type : Type, args : Array<Dynamic>) : Future<Dynamic>
+	function delete<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
 		return this.http.delete(this.getPath(path), type, args);
-	}*/
+	}
 	
 	public function getPath(relative : String) : String
 	{

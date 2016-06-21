@@ -39,30 +39,30 @@ class BeamHttpClient
 		return this.httpPassword = httpPassword;
 	}
 	
-	/*public function get(path : String, type : Type, args : Map<String, Dynamic>) : Future<Type>
+	public function get<T>(path : String, type : Class<T>, args : Map<String, Dynamic>) : Future<T>
 	{
-		// Stub
+		return null; // Stub
 	}
 	
-	public function post(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	public function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		// Stub
+		return null; // Stub
 	}
 	
-	public function put(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	public function put<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		// Stub
+		return null; // Stub
 	}
 	
-	public function patch(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	public function patch<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		// Stub
+		return null; // Stub
 	}
 	
-	public function delete(path : String, type : Type, args : Array<Dynamic>) : Future<Type>
+	public function delete<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		// Stub
-	}*/
+		return null; // Stub
+	}
 	
 	// Stub
 	

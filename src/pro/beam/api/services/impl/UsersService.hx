@@ -17,12 +17,12 @@ class UsersService extends AbstractHTTPService
 		super(beam, "users");
 	}
 	
-	/*public function findOne(id : Int) : Future<BeamUser>
+	public function findOne(id : Int) : Future<BeamUser>
 	{
-		return cast this.get(Std.string(id), null \, null);
+		return this.get(Std.string(id), null, null);
 	}
 	
-	public function refresh() : Future<BeamUser>
+	/*public function refresh() : Future<BeamUser>
 	{
 		// Stub
 	}*/
