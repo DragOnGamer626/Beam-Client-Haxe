@@ -16,7 +16,7 @@ class BeamAPI
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
 	
-	var http : BeamHttpClient;
+	public var http : BeamHttpClient;
 	var services : ServiceManager;
 	
 	public function new() 
