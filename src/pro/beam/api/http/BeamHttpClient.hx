@@ -37,4 +37,12 @@ class BeamHttpClient
 	{
 		return this.httpPassword = httpPassword;
 	}
+	
+	public function printVars()
+	{
+		var http = "http.";
+		trace(http + "oauthToken:" + oauthToken);
+		trace(http + "httpUserName:" + httpUserName);
+		trace(http + "httpPassword:" + httpPassword);
+	}
 }

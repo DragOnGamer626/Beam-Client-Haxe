@@ -1,6 +1,8 @@
 package pro.beam.api;
 import haxe.Json;
 import pro.beam.api.http.BeamHttpClient;
+import pro.beam.api.services.AbstractBeamService;
+import pro.beam.api.services.ServiceManager;
 import sys.net.Socket;
 
 /**
@@ -15,6 +17,7 @@ class BeamAPI
 	public var httpPassword(default, set) : String;
 	
 	var http : BeamHttpClient;
+	var services : ServiceManager<AbstractBeamService>;
 	
 	public function new() 
 	{
@@ -45,6 +48,7 @@ class BeamAPI
 	{
 		buildJson();
 		initVars();
+		passVarsDown();
 	}
 	
 	function buildJson() : Void
@@ -63,8 +67,20 @@ class BeamAPI
 	function initVars()
 	{
 		this.http = new BeamHttpClient(this);
+		this.services = new ServiceManager();
+		
+	}
+	
+	function passVarsDown()
+	{
 		http.oauthToken = oauthToken;
 		http.httpUserName = httpUserName;
 		http.httpPassword = httpPassword;
+		http.printVars();
+	}
+	
+	public function register(service : AbstractBeamService) : Bool
+	{
+		return true;
 	}
 }

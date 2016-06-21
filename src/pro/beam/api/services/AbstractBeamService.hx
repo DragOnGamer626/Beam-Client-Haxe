@@ -1,15 +1,16 @@
 package pro.beam.api.services;
+import pro.beam.api.BeamAPI;
 
 /**
  * ...
  * @author DragOnGamer626
  */
-class AbstractBeamService
+class AbstractBeamService extends AbstractService
 {
-
-	public function new() 
-	{
-		
-	}
+	var beam : BeamAPI;
 	
+	public function new(beam : BeamAPI)
+	{
+		this.beam = beam;
+	}
 }
