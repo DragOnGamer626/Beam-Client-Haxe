@@ -28,7 +28,7 @@ class ServiceManager
 	{
 		for (service in this.services.iterator())
 		{
-			this.services.remove(service);
+			this.unregister(service);
 		}
 	}
 }
