@@ -17,7 +17,7 @@ class BeamAPI
 	public var httpPassword(default, set) : String;
 	
 	var http : BeamHttpClient;
-	var services : ServiceManager<AbstractBeamService>;
+	var services : ServiceManager;
 	
 	public function new() 
 	{
@@ -68,7 +68,6 @@ class BeamAPI
 	{
 		this.http = new BeamHttpClient(this);
 		this.services = new ServiceManager();
-		
 	}
 	
 	function passVarsDown()
@@ -79,8 +78,8 @@ class BeamAPI
 		http.printVars();
 	}
 	
-	public function register(service : AbstractBeamService) : Bool
+	public function register(service : AbstractBeamService) : Int
 	{
-		return true;
+		return this.services.register(service);
 	}
 }
