@@ -15,8 +15,11 @@ class Main extends Application
 	public function new() 
 	{
 		var beam : BeamAPI = new BeamAPI();
-		beam.uri = "Test";
-		trace(beam.uri);
+		beam.uri = "http://test.com";
+		beam.oauthToken = "tOkEn-626";
+		beam.httpUserName = "Deej";
+		beam.httpPassword = "Test";
+		beam.buildJson();
 		super();
 	}
 	

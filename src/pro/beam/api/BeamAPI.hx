@@ -1,4 +1,5 @@
 package pro.beam.api;
+import haxe.Json;
 import sys.net.Socket;
 
 /**
@@ -39,6 +40,14 @@ class BeamAPI
 	
 	public function buildJson() : Void
 	{
+		var uriJSON = Json.stringify({uri : uri});
+		var oauthTokenJSON = Json.stringify({oauthToken : oauthToken});
+		var httpUserNameJSON = Json.stringify({httpUserName : httpUserName});
+		var httpPasswordJSON = Json.stringify({httpPassword : httpPassword});
 		
+		trace(uriJSON);
+		trace(oauthTokenJSON);
+		trace(httpUserNameJSON);
+		trace(httpPasswordJSON);
 	}
 }
