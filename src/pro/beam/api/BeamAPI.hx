@@ -3,6 +3,7 @@ import haxe.Json;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.services.AbstractBeamService;
 import pro.beam.api.services.ServiceManager;
+import pro.beam.api.services.impl.ChannelsService;
 import pro.beam.api.services.impl.ChatService;
 import pro.beam.api.services.impl.EmotesService;
 import pro.beam.api.services.impl.TypesService;
@@ -83,7 +84,7 @@ class BeamAPI
 		http.printVars();
 	}
 	
-	public function register(service : AbstractBeamService) : Int
+	function register(service : AbstractBeamService) : Int
 	{
 		return this.services.register(service);
 	}
@@ -93,6 +94,7 @@ class BeamAPI
 		this.register(new UsersService(this));
 		this.register(new ChatService(this));
 		this.register(new EmotesService(this));
+		this.register(new ChannelsService(this));
 		this.register(new TypesService(this));
 	}
 }
