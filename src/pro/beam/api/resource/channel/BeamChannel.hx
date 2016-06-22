@@ -1,5 +1,6 @@
 package pro.beam.api.resource.channel;
 import haxe.Serializer;
+import pro.beam.api.resource.BeamUser;
 
 /**
  * ...
@@ -37,12 +38,31 @@ class BeamChannel
 	public var type : Type;
 	public var preferences : Map<String, Dynamic>;
 	public var messageCache : Array<CachedMessage>;
+	public var user : BeamUser;
 	
-	public function new() {
-		var ser : Serializer = new Serializer();
+	// Stub Serializer Stuff
+	
+	public static class Type 
+	{
+		public var id : Int;
+		public var name : String;
+		public var parent : String;
+		public var description : String;
+		public var source : String;
+		public var viewersCurrent : Int;
+		public var online : Int;
+		public var coverUrl : String;
 	}
 	
-	public static enum AudienceRating {
+	public static enum CostreamPreference
+	{
+		ALL("all");
+		FOLLOWING("following");
+		NONE("none");
+	}
+	
+	public static enum AudienceRating
+	{
 		FAMILY("family");
 		TEEN("teen");
 		ADULT("18+");
