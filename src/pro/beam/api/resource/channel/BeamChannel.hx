@@ -18,7 +18,6 @@ class BeamChannel
 	public var interactive : Bool;
 	public var hasVod : Bool;
 	public var name : String;
-	//public var audience : AudienceRating;
 	public var streamKey : String;
 	public var viewersTotal : Int;
 	public var viewersCurrent : Int;
@@ -35,36 +34,41 @@ class BeamChannel
 	public var thumbnail : BeamResource;
 	public var cover : BeamResource;
 	public var badge : BeamResource;
-	public var type : Type;
+	public var type : ChannelType;
 	public var preferences : Map<String, Dynamic>;
 	public var messageCache : Array<CachedMessage>;
 	public var user : BeamUser;
-	
+	public var audience : AudienceRating;
+	public var cosPref : CostreamPreference;
+
 	// Stub Serializer Stuff
-	
-	/*public static class Type 
-	{
-		public var id : Int;
-		public var name : String;
-		public var parent : String;
-		public var description : String;
-		public var source : String;
-		public var viewersCurrent : Int;
-		public var online : Int;
-		public var coverUrl : String;
-	}
-	
-	public static enum CostreamPreference
-	{
-		ALL("all");
-		FOLLOWING("following");
-		NONE("none");
-	}
-	
-	public static enum AudienceRating
-	{
-		FAMILY("family");
-		TEEN("teen");
-		ADULT("18+");
-	}*/ // Don't Know How To Implement This
 }
+
+@:access(BeamChannel)
+class ChannelType 
+{
+	public var id : Int;
+	public var name : String;
+	public var parent : String;
+	public var description : String;
+	public var source : String;
+	public var viewersCurrent : Int;
+	public var online : Int;
+	public var coverUrl : String;
+}
+
+@:enum
+abstract CostreamPreference(String)
+{
+	var ALL = "all";
+	var FOLLOWING = "following";
+	var NONE = "none";
+}
+
+@:enum 
+abstract AudienceRating(String)
+{
+	var FAMILY = "family";
+	var TEEN = "teen";
+	var ADULT = "18+";
+} // Don't Know How To Implement This
