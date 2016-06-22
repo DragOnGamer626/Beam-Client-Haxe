@@ -1,4 +1,5 @@
 package pro.beam.api.response.emotes;
+import haxe.Http;
 
 /**
  * ...
@@ -6,7 +7,9 @@ package pro.beam.api.response.emotes;
  */
 class ChannelEmotesResponse
 {
-
+	public var uri : String; // Will Probably Change This Later
+	public var emoticons : EmoteSet;
+	
 	public function new() 
 	{
 		

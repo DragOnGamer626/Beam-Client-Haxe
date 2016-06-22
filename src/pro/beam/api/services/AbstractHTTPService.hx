@@ -8,7 +8,7 @@ import pro.beam.api.http.BeamHttpClient;
  * ...
  * @author DragOnGamer626
  */
-class AbstractHTTPService extends AbstractBeamService
+@:abstract class AbstractHTTPService extends AbstractBeamService
 {
 	var http : BeamHttpClient;
 	var path : String;
