@@ -18,7 +18,7 @@ class BeamChannel
 	public var interactive : Bool;
 	public var hasVod : Bool;
 	public var name : String;
-	public var audience : AudienceRating;
+	//public var audience : AudienceRating;
 	public var streamKey : String;
 	public var viewersTotal : Int;
 	public var viewersCurrent : Int;
@@ -42,7 +42,7 @@ class BeamChannel
 	
 	// Stub Serializer Stuff
 	
-	public static class Type 
+	/*public static class Type 
 	{
 		public var id : Int;
 		public var name : String;
@@ -66,5 +66,5 @@ class BeamChannel
 		FAMILY("family");
 		TEEN("teen");
 		ADULT("18+");
-	}
+	}*/ // Don't Know How To Implement This
 }

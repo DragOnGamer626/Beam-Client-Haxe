@@ -63,6 +63,6 @@ class ChatService extends AbstractHTTPService
 	
 	public function findOne(id : Int) : Future<BeamChat>
 	{
-		return this.get(Std.string(id), Type.resolveClass("pro.beam.api.resource.chat.BeamChat"));
+		return this.get(Std.string(id), Type.resolveClass("pro.beam.api.resource.chat.BeamChat"), null);
 	}
 }
