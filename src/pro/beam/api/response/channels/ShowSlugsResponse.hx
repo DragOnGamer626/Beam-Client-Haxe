@@ -11,19 +11,28 @@ class ShowSlugsResponse extends List<ChannelType>
 	
 	public static function putParams(builder : Map<String, Dynamic>) : Bool
 	{
-		switch(online)
+		if (online != null)
 		{
-			case ONLINE:
-				builder.set("where", "online.neq.0");
-				return true;
-			case OFFLINE:
-				builder.set("where", "online.eq.0");
-				return true;
-			case NONE:
-				return false;
-			default:
-				return false;
+			switch(online)
+			{
+				case ONLINE:
+					builder.set("where", "online.neq.0");
+					return true;
+				case OFFLINE:
+					builder.set("where", "online.eq.0");
+					return true;
+				case NONE:
+					return false;
+				default:
+					return false;
+			}
 		}
+		return false;
+	}
+	
+	public static function getParams()
+	{
+		return online.getParameters();
 	}
 }
 

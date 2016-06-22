@@ -5,11 +5,7 @@ package pro.beam.api.response.channels;
  * @author DragOnGamer626
  */
 class ShowChannelsResponse
-{
-	public static var attributes : Attributes;
-	public static var scope : Scope;
-	public static var ordering : Ordering;
-	
+{	
 	// Serialization Stuff
 	@:final public static var onlineJson = "online";
 	@:final public static var featuredJson = "featured";
@@ -25,10 +21,11 @@ class ShowChannelsResponse
 	@:final public static var typesJson = "types";
 	@:final public static var allJson = "names"; // why is this the same as Names?
 	
-	@:final public static var ascendingJson = "ascending";
-	@:final public static var descendingJson = "descending";
+	@:final public static var ascendingJson = "asc";
+	@:final public static var descendingJson = "desc";
 }
 
+@:access(ShowChannelsResponse)
 enum Attributes
 {
 	ONLINE;
@@ -41,6 +38,7 @@ enum Attributes
 	INTERACTIVE;
 }
 
+@:access(ShowChannelsResponse)
 enum Scope
 {
 	NAMES;
@@ -49,6 +47,7 @@ enum Scope
 	ALL;
 }
 
+@:access(ShowChannelsResponse)
 enum Ordering
 {
 	ASCENDING;

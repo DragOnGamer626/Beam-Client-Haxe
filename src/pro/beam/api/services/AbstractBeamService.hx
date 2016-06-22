@@ -5,7 +5,7 @@ import pro.beam.api.BeamAPI;
  * ...
  * @author DragOnGamer626
  */
-class AbstractBeamService extends AbstractService
+@:abstract class AbstractBeamService extends AbstractService
 {
 	var beam : BeamAPI;
 	
