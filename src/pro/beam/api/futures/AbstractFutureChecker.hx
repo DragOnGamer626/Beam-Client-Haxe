@@ -1,15 +1,14 @@
 package pro.beam.api.futures;
+import lime.app.Future;
 
 /**
  * ...
  * @author DragOnGamer626
  */
-class AbstractFutureChecker
+@:abstract class AbstractFutureChecker<V, E>
 {
-
-	public function new() 
+	public function check(future : Future<V>) : Future<V, E>
 	{
-		
+		return null; // Stub
 	}
-	
 }
