@@ -1,4 +1,7 @@
 package pro.beam.api.http;
+import haxe.ds.HashMap;
+import haxe.ds.StringMap;
+import haxe.ds.WeakMap;
 import lime.app.Future;
 import pro.beam.api.BeamAPI;
 
@@ -19,6 +22,7 @@ class BeamHttpClient
 	{
 		this.beam = beam;
 		
+		// Cookie Store Code Here?
 	}
 	
 	function set_userAgent(userAgent : String)
@@ -67,6 +71,11 @@ class BeamHttpClient
 	}
 	
 	// Stub
+	
+	public static function getArgumentsBuilder() : Map<String, Dynamic>
+	{
+		return new Map<String, Dynamic>();
+	}
 	
 	public function printVars()
 	{
