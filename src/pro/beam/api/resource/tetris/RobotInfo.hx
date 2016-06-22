@@ -4,7 +4,7 @@ package pro.beam.api.resource.tetris;
  * ...
  * @author DragOnGamer626
  */
-class RobotInfor
+class RobotInfo
 {
 
 	public function new() 
