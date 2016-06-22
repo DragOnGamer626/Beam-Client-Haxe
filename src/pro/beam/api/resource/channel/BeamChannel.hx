@@ -37,12 +37,23 @@ class BeamChannel
 	public var badge : BeamResource;
 	public var type : ChannelType;
 	public var preferences : Map<String, Dynamic>;
-	public var messageCache : Array<CachedMessage>;
 	public var user : BeamUser;
 	public var audience : AudienceRating;
 	public var cosPref : CostreamPreference;
+	
+	public var messageCache : Array<CachedMessage>;
 
 	// Stub Serializer Stuff
+	
+	@:final public var allJson = "all";
+	@:final public var followingJson = "following";
+	@:final public var noneJson = "none";
+	
+	@:final public var familyJson = "family";
+	@:final public var teenJson = "teen";
+	@:final public var adultJson = "18+";
+	
+	@:final public var cacheJson = "cache";
 	
 	public function new()
 	{
@@ -63,20 +74,16 @@ class ChannelType
 	public var coverUrl : String;
 }
 
-@:final
-@:enum
-abstract CostreamPreference(String)
-{
-	public var ALL = "all";
-	public var FOLLOWING = "following";
-	public var NONE = "none";
+enum CostreamPreference
+{	
+	ALL;
+	FOLLOWING;
+	NONE;
 }
 
-@:final
-@:enum 
-abstract AudienceRating(String)
+enum AudienceRating
 {
-	public var FAMILY = "family";
-	public var TEEN = "teen";
-	public var ADULT = "18+";
+	FAMILY;
+	TEEN;
+	ADULT;
 } // Don't Know How To Implement This
