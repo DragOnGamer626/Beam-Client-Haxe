@@ -96,7 +96,7 @@ class BeamAPI
 		this.register(new ChatService(this));
 		this.register(new EmotesService(this));
 		this.register(new ChannelsService(this));
-		this.register(new TetrisService(this));
 		this.register(new TypesService(this));
+		this.register(new TetrisService(this));
 	}
 }

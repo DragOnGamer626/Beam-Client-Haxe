@@ -1,4 +1,5 @@
 package pro.beam.api.futures;
+import haxe.io.Error;
 import lime.app.Future;
 
 /**
@@ -7,8 +8,5 @@ import lime.app.Future;
  */
 @:abstract class AbstractFutureChecker<V, E>
 {
-	public function check(future : Future<V>) : Future<V>
-	{
-		return null; // Stub
-	}
+	
 }
