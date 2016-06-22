@@ -1,7 +1,4 @@
 package pro.beam.api.http;
-import haxe.ds.HashMap;
-import haxe.ds.StringMap;
-import haxe.ds.WeakMap;
 import lime.app.Future;
 import pro.beam.api.BeamAPI;
 
