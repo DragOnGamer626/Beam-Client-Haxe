@@ -60,15 +60,15 @@ class ChannelType
 @:enum
 abstract CostreamPreference(String)
 {
-	var ALL = "all";
-	var FOLLOWING = "following";
-	var NONE = "none";
+	@:final public var ALL = "all";
+	@:final public var FOLLOWING = "following";
+	@:final public var NONE = "none";
 }
 
 @:enum 
 abstract AudienceRating(String)
 {
-	var FAMILY = "family";
-	var TEEN = "teen";
-	var ADULT = "18+";
+	@:final public var FAMILY = "family";
+	@:final public var TEEN = "teen";
+	@:final public var ADULT = "18+";
 } // Don't Know How To Implement This
