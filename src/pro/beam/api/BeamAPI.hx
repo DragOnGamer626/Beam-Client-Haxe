@@ -5,6 +5,7 @@ import pro.beam.api.services.AbstractBeamService;
 import pro.beam.api.services.ServiceManager;
 import pro.beam.api.services.impl.ChatService;
 import pro.beam.api.services.impl.EmotesService;
+import pro.beam.api.services.impl.TypesService;
 import pro.beam.api.services.impl.UsersService;
 import sys.net.Socket;
 
@@ -92,5 +93,6 @@ class BeamAPI
 		this.register(new UsersService(this));
 		this.register(new ChatService(this));
 		this.register(new EmotesService(this));
+		this.register(new TypesService(this));
 	}
 }
