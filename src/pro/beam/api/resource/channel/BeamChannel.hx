@@ -57,18 +57,20 @@ class ChannelType
 	public var coverUrl : String;
 }
 
+@:final
 @:enum
 abstract CostreamPreference(String)
 {
-	@:final public var ALL = "all";
-	@:final public var FOLLOWING = "following";
-	@:final public var NONE = "none";
+	public var ALL = "all";
+	public var FOLLOWING = "following";
+	public var NONE = "none";
 }
 
+@:final
 @:enum 
 abstract AudienceRating(String)
 {
-	@:final public var FAMILY = "family";
-	@:final public var TEEN = "teen";
-	@:final public var ADULT = "18+";
+	public var FAMILY = "family";
+	public var TEEN = "teen";
+	public var ADULT = "18+";
 } // Don't Know How To Implement This
