@@ -1,4 +1,5 @@
 package pro.beam.api.resource.channel;
+import haxe.Json;
 import haxe.Serializer;
 import pro.beam.api.resource.BeamUser;
 
@@ -42,6 +43,11 @@ class BeamChannel
 	public var cosPref : CostreamPreference;
 
 	// Stub Serializer Stuff
+	
+	public function new()
+	{
+		
+	}
 }
 
 @:access(BeamChannel)
