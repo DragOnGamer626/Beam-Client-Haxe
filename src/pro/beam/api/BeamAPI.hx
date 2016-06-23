@@ -9,7 +9,6 @@ import pro.beam.api.services.impl.EmotesService;
 import pro.beam.api.services.impl.TetrisService;
 import pro.beam.api.services.impl.TypesService;
 import pro.beam.api.services.impl.UsersService;
-import sys.net.Socket;
 
 /**
  * ...

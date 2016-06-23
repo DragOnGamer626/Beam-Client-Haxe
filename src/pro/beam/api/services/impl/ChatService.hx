@@ -1,5 +1,5 @@
 package pro.beam.api.services.impl;
-import lime.app.Future;
+import tink.core.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.resource.channel.BeamChannel;

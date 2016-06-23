@@ -1,6 +1,6 @@
 package pro.beam.api.services.impl;
 import haxe.io.Error;
-import lime.app.Future;
+import tink.core.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.futures.SimpleFutureChecker;
 import pro.beam.api.resource.channel.BeamChannel;

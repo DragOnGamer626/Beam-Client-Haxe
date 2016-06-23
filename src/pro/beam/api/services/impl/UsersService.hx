@@ -1,7 +1,6 @@
 package pro.beam.api.services.impl;
-import haxe.Log;
-import haxe.io.Error;
-import lime.app.Future;
+
+import tink.core.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.response.users.UserSearchResponse;
 import pro.beam.api.services.AbstractHTTPService;
@@ -42,7 +41,7 @@ class UsersService extends AbstractHTTPService
 		if (query != null && query.length < 3)
 		{
 			trace("unable to preform search with query less than 3 characters (was " + Std.string(query.length) + ")");
-			throw Error;
+			throw null;
 		}
 		
 		else
