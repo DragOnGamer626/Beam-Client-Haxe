@@ -7,5 +7,6 @@
 	<source path="src" />
 	
 	<haxelib name="lime" />
+	<haxelib name="tink_core" />
 	
 </project>
