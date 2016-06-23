@@ -1,0 +1,4 @@
+-python bin/python/Beam-Client.py
+-cp src
+-lib tink_core
+-main pro.beam.api.Main
