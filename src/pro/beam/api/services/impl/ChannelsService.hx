@@ -107,4 +107,14 @@ class ChannelsService extends AbstractHTTPService
 	{
 		return this.get(Std.string(id), Type.resolveClass("pro.beam.api.resource.channel.BeamChannel"), null);
 	}
+	
+	public function findOneByTokenDetailed(token : String) : Future<BeamChannel>
+	{
+		return this.get(token + "/detailed", Type.resolveClass("pro.beam.api.resource.channel.BeamChannel"), null);
+	}
+	
+	public function findOneDetailed(id : Int) : Future<BeamChannel>
+	{
+		return this.get(Std.string(id) + "/detailed", Type.resolveClass("pro.beam.api.resource.channel.BeamChannel"), null);
+	}
 }
