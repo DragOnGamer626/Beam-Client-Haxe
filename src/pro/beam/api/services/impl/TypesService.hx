@@ -31,24 +31,27 @@ class TypesService extends AbstractHTTPService
 		only : Attributes) : Future<ShowChannelsResponse>
 	{
 		var args : Map<String, Dynamic> = new Map<String, Dynamic>();
-		var orderJson : String;
+		var orderJson : String = "";
 		
 		if (attribute != null)
 		{	
-			switch(ordering)
+			for (i in ordering.getParameters())
 			{
-				case ASCENDING:
-					orderJson = ShowChannelsResponse.ascendingJson;
-				case DESCENDING:
-					orderJson = ShowChannelsResponse.descendingJson;
-			};
+				switch(ordering)
+				{
+					case ASCENDING:
+						orderJson = ShowChannelsResponse.ascendingJson;
+					case DESCENDING:
+						orderJson = ShowChannelsResponse.descendingJson;
+				};
+			}
 			
-			args.set("order", getAttibJson(attribute) + ":" + orderJson);
+			args.set("order", getAttribJson(attribute) + ":" + orderJson);
 		};
 		
 		if (only != null)
 		{
-			args.set("only", getAttibJson(only));
+			args.set("only", getAttribJson(only));
 		};
 		
 		args.set("page", Math.max(0, page));
@@ -62,9 +65,11 @@ class TypesService extends AbstractHTTPService
 		return this.get(id + "/channels", Type.resolveClass("pro.beam.api.response.channels.ShowChannelsResponse"), args);
 	}
 	
-	function getAttibJson(attribute : Attributes)
+	function getAttribJson(attribute : Attributes) : String
 	{
-		switch(attribute)
+		for (i in attribute.getParameters())
+		{
+			switch(i)
 			{
 				case ONLINE:
 					return ShowChannelsResponse.onlineJson;
@@ -85,5 +90,7 @@ class TypesService extends AbstractHTTPService
 				default:
 					return "";
 			};
+		}
+		return "";
 	}
 }
