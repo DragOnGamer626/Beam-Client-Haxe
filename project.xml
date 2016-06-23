@@ -2,12 +2,11 @@
 <project>
 	
 	<meta title="Beam-Haxe" package="Beam-Haxe" version="1.0.0" company="DragOnGamer626" />
-	<app main="Main" file="Beam-Haxe" path="bin" />
+	<app main="pro.beam.api.Main" file="Beam-Haxe" path="bin" />
 	
 	<source path="src" />
 	
 	<haxelib name="lime" />
 	<haxelib name="tink_core" />
-	<haxelib name="hxjava" />
 	
 </project>
