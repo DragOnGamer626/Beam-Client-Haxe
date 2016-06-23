@@ -1,9 +1,9 @@
 package pro.beam.api;
 
-#if java
-import java.Lib;
-#elseif !python
+#if cpp
 import lime.app.Application;
+#elseif java
+import java.Lib;
 #end
 import pro.beam.api.BeamAPI;
 
@@ -11,27 +11,7 @@ import pro.beam.api.BeamAPI;
  * ...
  * @author DragOnGamer626
  */
-#if java
-class Main
-{
-	public static function main()
-	{
-		var beam : BeamAPI = new BeamAPI();
-		MainHelper.init(beam);
-	}
-}
-
-#elseif python // Python 3 target only supported
-class Main
-{
-	public static function main()
-	{
-		var beam : BeamAPI = new BeamAPI();
-		MainHelper.init(beam);
-	}
-}
-
-#else
+#if cpp
 class Main extends Application 
 {
 
@@ -40,6 +20,16 @@ class Main extends Application
 		var beam : BeamAPI = new BeamAPI();
 		MainHelper.init(beam);
 		super();
+	}
+}
+
+#else // NOTE: Python 3 target only supported
+class Main
+{
+	public static function main()
+	{
+		var beam : BeamAPI = new BeamAPI();
+		MainHelper.init(beam);
 	}
 }
 #end
