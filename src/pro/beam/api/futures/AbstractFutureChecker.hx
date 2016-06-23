@@ -1,6 +1,6 @@
 package pro.beam.api.futures;
-import haxe.io.Error;
-import lime.app.Future;
+import tink.core.Error.ErrorCode;
+import tink.core.Future;
 
 /**
  * ...
@@ -8,5 +8,17 @@ import lime.app.Future;
  */
 @:abstract class AbstractFutureChecker<V, E>
 {
-	
+	public function check() : Future<V>
+	{
+		try
+		{
+			
+		}
+		catch (e : ErrorCode)
+		{
+			
+		}
+		
+		return null;
+	}
 }
