@@ -1,6 +1,4 @@
 package pro.beam.api.services.impl;
-import haxe.ds.HashMap;
-import haxe.ds.StringMap;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;

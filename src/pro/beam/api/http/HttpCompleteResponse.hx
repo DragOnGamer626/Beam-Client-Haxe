@@ -6,10 +6,23 @@ package pro.beam.api.http;
  */
 class HttpCompleteResponse
 {
-
-	public function new() 
+	var status : Int;
+	var body : String;
+	
+	public function new(status : Int, body : String) 
 	{
-		
+		this.status = status;
+		this.body = body;
+	}
+	
+	public function getStatus() : Int
+	{
+		return status;
+	}
+	
+	public function getBody() : String
+	{
+		return body;
 	}
 	
 }
