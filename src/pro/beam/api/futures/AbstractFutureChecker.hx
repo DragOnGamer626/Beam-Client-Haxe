@@ -17,6 +17,18 @@ import tink.core.Future;
 	{
 		var hbre : HttpBadResponseException<V> = null;
 		
+		try
+		{
+			
+		}
+		catch (e : BeamException)
+		{
+			if (Std.is(HttpBadResponseException, e)) 
+			{
+				
+			}
+		}
+		
 		return null;
 	}
 	
