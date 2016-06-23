@@ -12,7 +12,8 @@ class BeamException
 	{
 		if (d == null)
 		{
-			return null;
+			trace(Std.string(d) + " was Null");
+			throw Error;
 		}
 		
 		return d;

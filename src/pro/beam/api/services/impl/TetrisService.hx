@@ -6,6 +6,7 @@ import pro.beam.api.futures.SimpleFutureChecker;
 import pro.beam.api.resource.channel.BeamChannel;
 import pro.beam.api.services.AbstractHTTPService;
 import pro.beam.api.resource.tetris.RobotInfo;
+import pro.beam.api.exceptions.BeamException;
 
 /**
  * ...
@@ -29,6 +30,6 @@ class TetrisService extends AbstractHTTPService
 	
 	public function getRobotCredentials(channel : BeamChannel) : Future<RobotInfo>
 	{
-		return this.get(Std.string(channel.id) + "/robot", Type.resolveClass("pro.beam.api.resource.tetris.RobotInfo"), null); // Stub
+		return BeamException.checkNull(this.get(Std.string(channel.id) + "/robot", Type.resolveClass("pro.beam.api.resource.tetris.RobotInfo"), null)); // Stub
 	}
 }
