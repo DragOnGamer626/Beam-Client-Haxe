@@ -1,11 +1,9 @@
 package pro.beam.api;
 
-#if !java
-import lime.app.Application;
-import lime.graphics.opengl.GL;
-import lime.graphics.RenderContext;
-#elseif java
+#if java
 import java.Lib;
+#else
+import lime.app.Application;
 #end
 import pro.beam.api.BeamAPI;
 
@@ -13,8 +11,20 @@ import pro.beam.api.BeamAPI;
  * ...
  * @author DragOnGamer626
  */
-
-#if !java
+#if java
+class Main
+{
+	public static function main()
+	{
+		var beam : BeamAPI = new BeamAPI();
+		beam.uri = "http://test.com";
+		beam.oauthToken = "tOkEn-626";
+		beam.httpUserName = "Deej";
+		beam.httpPassword = "Test";
+		beam.run();
+	}
+}
+#else
 class Main extends Application 
 {
 
@@ -27,20 +37,6 @@ class Main extends Application
 		beam.httpPassword = "Test";
 		beam.run();
 		super();
-	}
-}
-
-#elseif java
-class Main
-{
-	public static function main()
-	{
-		var beam : BeamAPI = new BeamAPI();
-		beam.uri = "http://test.com";
-		beam.oauthToken = "tOkEn-626";
-		beam.httpUserName = "Deej";
-		beam.httpPassword = "Test";
-		beam.run();
 	}
 }
 #end
