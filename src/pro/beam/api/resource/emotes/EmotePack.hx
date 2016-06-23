@@ -10,5 +10,5 @@ class EmotePack
 	public var name : String;
 	public var isDefault : Bool;
 	public var authors : List<String>;
-	public var emotes : EmoteSet<String,  EmoticonCoordinate>;
+	public var emotes : EmoteSet;
 }

@@ -74,6 +74,7 @@ class ChannelType
 	public var coverUrl : String;
 }
 
+@:access(BeamChannel)
 enum CostreamPreference
 {	
 	ALL;
@@ -81,6 +82,7 @@ enum CostreamPreference
 	NONE;
 }
 
+@:access(BeamChannel)
 enum AudienceRating
 {
 	FAMILY;

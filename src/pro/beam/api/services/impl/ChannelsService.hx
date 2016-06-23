@@ -1,11 +1,15 @@
 package pro.beam.api.services.impl;
 import haxe.ds.HashMap;
+import haxe.ds.StringMap;
 import lime.app.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;
+import pro.beam.api.resource.BeamUser;
 import pro.beam.api.resource.channel.BeamChannel;
+import pro.beam.api.response.emotes.ChannelEmotesResponse;
 import pro.beam.api.services.AbstractHTTPService;
 import pro.beam.api.response.channels.ShowChannelsResponse;
+import pro.beam.api.response.channels.ChannelStatusResponse;
 
 /**
  * ...
@@ -13,7 +17,8 @@ import pro.beam.api.response.channels.ShowChannelsResponse;
  */
 class ChannelsService extends AbstractHTTPService
 {
-
+	static var CHANNEL_ROOT = "";
+	
 	public function new(beam : BeamAPI) 
 	{
 		super(beam, "channels");
@@ -117,4 +122,60 @@ class ChannelsService extends AbstractHTTPService
 	{
 		return this.get(Std.string(id) + "/detailed", Type.resolveClass("pro.beam.api.resource.channel.BeamChannel"), null);
 	}
+	
+	public function findRelationship(channel : BeamChannel, user : BeamUser) : Future<ChannelStatusResponse>
+	{
+		var args : Map<String, Dynamic> = BeamHttpClient.getArgumentsBuilder();
+		args.set("user", Std.string(channel.id));
+		
+		return this.get(Std.string(channel.id) + "/relationship", Type.resolveClass("pro.beam.api.response.channels.ChannelStatusResponse"), args);
+	} // This will probably need to be changed in the future
+	
+	public function follow<T>(channel : BeamChannel, follower : BeamUser) : Future<T>
+	{
+		var args : Map<String, Dynamic> = BeamHttpClient.getArgumentsBuilder();
+		args.set("user", follower.id);
+		
+		return this.get(Std.string(channel.id) + "/follow", null, args);
+	}
+	
+	public function unfollow<T>(channel : BeamChannel, exFollower : BeamUser) : Future<T>
+	{
+		var args : Map<String, Dynamic> = BeamHttpClient.getArgumentsBuilder();
+		args.set("user", exFollower.id);
+		
+		return this.get(Std.string(channel.id) + "/follow", null, args);
+	}
+	
+	public function search(query : String, scope : Scope, page : Int, limit : Int) : Future<ShowChannelsResponse>
+	{
+		var options : Map<String, Dynamic> = BeamHttpClient.getArgumentsBuilder();
+		
+		options.set("q", query);
+		options.set("scope", scope);
+		options.set("page", Math.min(0, page));
+		options.set("limit", Math.min(0, limit));
+		
+		return this.get(CHANNEL_ROOT, Type.resolveClass("pro.beam.api.response.channels.ShowChannelResponse"), options);
+	}
+	
+	public function update(channel : BeamChannel) : Future<BeamChannel>
+	{
+		var args : Map<String, Dynamic> = BeamHttpClient.getArgumentsBuilder();
+		
+		args.set(channel.allJson, ALL);
+		args.set(channel.followingJson, FOLLOWING);
+		args.set(channel.noneJson, NONE);
+		args.set(channel.familyJson, FAMILY);
+		args.set(channel.teenJson, TEEN);
+		args.set(channel.adultJson, ADULT);
+		
+		return this.get(Std.string(channel.id), Type.resolveClass("pro.beam.api.resource.channel.BeamChannel"), args);
+	}
+	
+	public function emotes(channel : BeamChannel) : Future<ChannelEmotesResponse>
+	{
+		return this.get(Std.string(channel.id) + "/emoticons", Type.resolveClass("pro.beam.api.response.emotes.ChannelEmotesResponse"), null);
+	}
+	
 }
