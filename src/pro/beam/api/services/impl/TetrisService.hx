@@ -30,6 +30,6 @@ class TetrisService extends AbstractHTTPService
 	
 	public function getRobotCredentials(channel : BeamChannel) : Future<RobotInfo>
 	{
-		return BeamException.checkNull(this.get(Std.string(channel.id) + "/robot", Type.resolveClass("pro.beam.api.resource.tetris.RobotInfo"), null)); // Stub
+		return this.get(Std.string(channel.id) + "/robot", Type.resolveClass("pro.beam.api.resource.tetris.RobotInfo"), null); // Stub
 	}
 }

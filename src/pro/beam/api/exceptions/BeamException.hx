@@ -1,21 +1,16 @@
 package pro.beam.api.exceptions;
 import haxe.Log;
-import haxe.io.Error;
+import tink.core.Error.ErrorCode;
+import tink.core.Error.TypedError;
 
 /**
  * ...
  * @author DragOnGamer626
  */
-class BeamException
+class BeamException<T> extends TypedError<T>
 {
-	public static function checkNull(d : Dynamic) : Dynamic
+	public function new(?code:ErrorCode = InternalError, message, ?pos)
 	{
-		if (d == null)
-		{
-			trace(Std.string(d) + " was Null");
-			throw Error;
-		}
-		
-		return d;
+		super(code, message, pos);
 	}
 }

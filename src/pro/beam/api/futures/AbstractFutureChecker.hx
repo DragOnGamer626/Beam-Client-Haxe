@@ -21,18 +21,19 @@ import tink.core.Future;
 		{
 			
 		}
-		catch (e : BeamException)
+		catch (e : Dynamic)
 		{
-			if (Std.is(HttpBadResponseException, e)) 
+			if (Std.is(HttpBadResponseException, e)) // This is the same as InstanceOf in most OO Languages
 			{
-				
+				trace(Std.string(e) + " has been thrown");
+				return null;
 			}
 		}
 		
 		return null;
 	}
 	
-	@:abstract function getException(response : HttpCompleteResponse) : BeamException
+	@:abstract function getException(response : HttpCompleteResponse) : BeamException<V>
 	{
 		return null;
 	}
