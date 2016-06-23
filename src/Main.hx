@@ -22,14 +22,4 @@ class Main extends Application
 		beam.run();
 		super();
 	}
-	
-	public function init(context:RenderContext):Void 
-	{
-		switch (context) 
-		{
-			case OPENGL(gl):
-			
-			default:
-		}
-	}
 }
