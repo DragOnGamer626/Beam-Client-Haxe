@@ -37,7 +37,7 @@ class TypesService extends AbstractHTTPService
 		{	
 			for (i in ordering.getParameters())
 			{
-				switch(ordering)
+				switch(i)
 				{
 					case ASCENDING:
 						orderJson = ShowChannelsResponse.ascendingJson;

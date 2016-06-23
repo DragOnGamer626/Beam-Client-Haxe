@@ -1,4 +1,5 @@
 package pro.beam.api.services.impl;
+import haxe.ds.HashMap;
 import lime.app.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;
@@ -18,23 +19,28 @@ class ChannelsService extends AbstractHTTPService
 		super(beam, "channels");
 	}
 	
-	public function show(attributes : Map<Attributes, Ordering>, only : Ordering, page : Int, limit : Int) : Future<ShowChannelsResponse>
+	public function show(attribute : Attributes, ordering : Ordering, only : Ordering, page : Int, limit : Int) : Future<ShowChannelsResponse>
 	{
 		var args : Map<String, Dynamic> = BeamHttpClient.getArgumentsBuilder();
 		
 		var orderJson : String = "";
 		var order : Ordering;
 		
-		/*if (attributes != null)
+		if (attribute != null)
 		{	
-			for (i in attributes.keys())
+			for (i in ordering.getParameters())
 			{
-				for (j in attributes.iterator())
+				switch(i)
 				{
-					args.set(, j);
-				}
+					case ASCENDING:
+						orderJson = ShowChannelsResponse.ascendingJson;
+					case DESCENDING:
+						orderJson = ShowChannelsResponse.descendingJson;
+				};
 			}
-		};*/
+			
+			args.set(getAttribJson(attribute), orderJson);
+		};
 		
 		if (only != null)
 		{
@@ -56,6 +62,35 @@ class ChannelsService extends AbstractHTTPService
 		args.set("limit", Math.min(0, limit));
 		
 		return this.get("", Type.resolveClass("pro.beam.api.response.channels.ShowChannelsResponse"), args);
+	}
+	
+	function getAttribJson(attribute : Attributes) : String
+	{
+		for (i in attribute.getParameters())
+		{
+			switch(i)
+			{
+				case ONLINE:
+					return ShowChannelsResponse.onlineJson;
+				case FEATURED:
+					return ShowChannelsResponse.featuredJson;
+				case PARTNERED:
+					return ShowChannelsResponse.partneredJson;
+				case NAME:
+					return ShowChannelsResponse.attribNameJson;
+				case VIEWERS_TOTAL:
+					return ShowChannelsResponse.viewersJson;
+				case FOLLOWERS:
+					return ShowChannelsResponse.followersJson;
+				case SUBSCRIBERS:
+					return ShowChannelsResponse.subsJson;
+				case INTERACTIVE:
+					return ShowChannelsResponse.interactiveJson;
+				default:
+					return "";
+			};
+		}
+		return "";
 	}
 	
 	/**
