@@ -1,4 +1,4 @@
 -cp src
 -lib tink_core
 -java bin/java
--main pro.beam.api.Main
+pro.beam.api.BeamAPI
