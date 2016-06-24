@@ -29,6 +29,8 @@ class HttpCompleteResponseHandler
 				if(responses[i].getStatus() == code)
 					response = responses[i];
 			}
+			
+			return null;
 		}
 		
 		return response;
