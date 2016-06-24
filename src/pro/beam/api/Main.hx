@@ -1,6 +1,6 @@
 package pro.beam.api;
 
-#if cpp
+#if (cpp || flash)
 import lime.app.Application;
 #elseif java
 import java.Lib;
@@ -23,12 +23,22 @@ class Main extends Application
 	}
 }
 
+#elseif flash
+class Main extends Application
+{
+	public static function main()
+	{
+		var beam : BeamAPI = new BeamAPI();		
+		MainHelper.init(beam);
+	}
+}
+
 #else // NOTE: Python 3 target only supported
 class Main
 {
 	public static function main()
 	{
-		var beam : BeamAPI = new BeamAPI();
+		var beam : BeamAPI = new BeamAPI();		
 		MainHelper.init(beam);
 	}
 }

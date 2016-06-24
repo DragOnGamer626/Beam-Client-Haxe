@@ -1,5 +1,6 @@
 package pro.beam.api;
 import haxe.Json;
+import hex.service.stateful.StatefulService;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.http.HttpCompleteResponseHandler;
 import pro.beam.api.services.AbstractBeamService;
@@ -39,7 +40,9 @@ class BeamAPI
 		this.uri = "https://beam.pro/api/v1/";
 		
 		initVars();
-		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);	
+		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);
+		
+		var service : StatefulService = new StatefulService();
 	}
 	
 	function set_uri(uri) 
