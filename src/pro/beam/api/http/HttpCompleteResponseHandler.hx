@@ -21,12 +21,14 @@ class HttpCompleteResponseHandler
 	
 	public function getResponse(code : Int) : HttpCompleteResponse
 	{
+		var response : HttpCompleteResponse = null;
+		
 		for (i in responses.iterator())
 		{
-			return checkResponseBasedOnCode(responses.lastIndexOf(i), code);
+			response = checkResponseBasedOnCode(responses.lastIndexOf(i), code);
 		}
 		
-		return null;
+		return response;
 	}
 	
 	function checkResponseBasedOnCode(index : Int, code : Int) : HttpCompleteResponse

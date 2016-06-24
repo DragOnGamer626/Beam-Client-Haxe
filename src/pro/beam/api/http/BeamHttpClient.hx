@@ -1,4 +1,5 @@
 package pro.beam.api.http;
+import tink.core.Error.ErrorCode;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
 
@@ -9,6 +10,7 @@ import pro.beam.api.BeamAPI;
 class BeamHttpClient
 {
 	var beam : BeamAPI;
+	var handler : HttpCompleteResponseHandler;
 	
 	public var userAgent(default, set) : String;
 	public var oauthToken(default, set) : String;
@@ -18,7 +20,13 @@ class BeamHttpClient
 	public function new(beam : BeamAPI) 
 	{
 		this.beam = beam;
+		this.handler = new HttpCompleteResponseHandler();
 		
+		handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
+		handler.add(new HttpCompleteResponse(ErrorCode.Conflict, "Test2"));
+		handler.add(new HttpCompleteResponse(ErrorCode.BadRequest, "Test3"));
+		
+		trace(handler.getResponse(ErrorCode.BadRequest).getBody());
 		// Cookie Store Code Here?
 	}
 	

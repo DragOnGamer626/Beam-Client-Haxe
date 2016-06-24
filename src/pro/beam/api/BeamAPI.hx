@@ -28,8 +28,6 @@ class BeamAPI
 	public function new() 
 	{
 		uri = "https://beam.pro/api/v1/";
-		
-		var handler : HttpCompleteResponseHandler = new HttpCompleteResponseHandler();
 	}
 	
 	function set_uri(uri) 
