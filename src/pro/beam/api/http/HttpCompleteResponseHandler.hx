@@ -15,30 +15,23 @@ class HttpCompleteResponseHandler
 	
 	public function add(response : HttpCompleteResponse) : Void
 	{
-		if (response != null)
-			responses.push(response);
+		responses.push(response);
 	}
 	
 	public function getResponse(code : Int) : HttpCompleteResponse
-	{
-		//var response : HttpCompleteResponse = null;
-		
+	{		
+		var response : HttpCompleteResponse = null;
+
 		for (i in 0...responses.length)
 		{
-			return checkResponseBasedOnCode(i, code);
+			if (HttpBadResponseException.checkResponse(responses[i]))
+			{
+				if(responses[i].getStatus() == code)
+					response = responses[i];
+			}
 		}
 		
-		return null;
-	}
-	
-	function checkResponseBasedOnCode(index : Int, code : Int) : HttpCompleteResponse
-	{
-		var response : HttpCompleteResponse = responses[index];
-		
-		if (response.getStatus() == code)
-			return response;
-			
-		return null;
+		return response;
 	}
 	
 	public function getResponses() : Array<HttpCompleteResponse>

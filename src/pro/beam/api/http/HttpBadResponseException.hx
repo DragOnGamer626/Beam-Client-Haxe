@@ -1,24 +1,25 @@
 package pro.beam.api.http;
-import pro.beam.api.exceptions.BeamException;
-import tink.core.Error;
-import tink.core.Error.ErrorCode;
 
 /**
  * ...
  * @author DragOnGamer626
  */
-class HttpBadResponseException<V> extends BeamException<V>
+class HttpBadResponseException
 {
-	public var response(default, set) : HttpCompleteResponse;
 	
-	public function new(response : HttpCompleteResponse, ?code:ErrorCode = InternalError, message, ?pos) 
+	public static function checkResponse(response : HttpCompleteResponse) : Bool
 	{
-		this.set_response(response);
-		super(code, message, pos);
-	}
-	
-	function set_response(response : HttpCompleteResponse)
-	{
-		return this.response = response;
+		try
+		{
+			trace(response.getBody());
+			throw "Test";
+		}
+		catch (e : Dynamic)
+		{
+			trace("Please Kill Me");
+			return false;
+		}
+		
+		return true;
 	}
 }

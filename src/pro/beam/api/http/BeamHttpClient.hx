@@ -22,11 +22,9 @@ class BeamHttpClient
 		this.beam = beam;
 		this.handler = handler;
 		
-		/*handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
+		handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
 		handler.add(new HttpCompleteResponse(ErrorCode.Conflict, "Test2"));
 		handler.add(new HttpCompleteResponse(ErrorCode.BadRequest, "Test3"));
-		
-		trace(handler.getResponse(ErrorCode.BadRequest).getBody());*/
 		// Cookie Store Code Here?
 	}
 	
@@ -88,5 +86,7 @@ class BeamHttpClient
 		trace(http + "oauthToken:" + oauthToken);
 		trace(http + "httpUserName:" + httpUserName);
 		trace(http + "httpPassword:" + httpPassword);
+		
+		trace(handler.getResponse(0).getBody());
 	}
 }
