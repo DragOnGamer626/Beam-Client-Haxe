@@ -43,6 +43,8 @@ class BeamAPI
 		
 		initVars();
 		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);
+		this.http = new BeamHttpClient(this, handler, oauthToken, httpUserName, httpPassword);
+
 	}
 	
 	function set_uri(uri) 
@@ -120,7 +122,6 @@ class BeamAPI
 	function initVars() : Void
 	{
 		this.handler = new HttpCompleteResponseHandler();
-		this.http = new BeamHttpClient(this, handler);
 		this.services = new ServiceManager();
 	}
 	

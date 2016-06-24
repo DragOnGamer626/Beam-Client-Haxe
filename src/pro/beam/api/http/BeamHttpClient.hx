@@ -1,6 +1,5 @@
 package pro.beam.api.http;
 
-import tink.core.Error.ErrorCode;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
 
@@ -18,15 +17,12 @@ class BeamHttpClient
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
 
-	public function new(beam : BeamAPI, handler : HttpCompleteResponseHandler) 
+	public function new(beam : BeamAPI, handler : HttpCompleteResponseHandler, ?oauthToken : String, httpUserName : String, httpPassword : String) 
 	{
 		this.beam = beam;
 		this.handler = handler;
 		
-		
-		handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
-		handler.add(new HttpCompleteResponse(ErrorCode.Conflict, "Test2"));
-		handler.add(new HttpCompleteResponse(ErrorCode.BadRequest, "Test3"));
+		checkConstructorParams(oauthToken, httpUserName, httpPassword);
 		// Cookie Store Code Here?
 	}
 	
@@ -48,6 +44,31 @@ class BeamHttpClient
 	function set_httpPassword(httpPassword : String)
 	{
 		return this.httpPassword = httpPassword;
+	}
+	
+	function checkConstructorParams(oauthToken : String, httpUserName : String, httpPassword : String) : Void
+	{
+		checkOauthToken(oauthToken);
+		checkHttpUserName(httpUserName);
+		checkHttpPassword(httpPassword);
+	}
+	
+	function checkOauthToken(oauthToken : String) : Void
+	{
+		if (oauthToken != null)
+			set_oauthToken(oauthToken);
+	}
+	
+	function checkHttpUserName(httpUserName : String) : Void
+	{
+		if (httpUserName != null)
+			set_httpUserName(httpUserName);
+	}
+	
+	function checkHttpPassword(httpPassword : String) : Void
+	{
+		if (httpPassword != null)
+			set_httpPassword(httpPassword);
 	}
 	
 	public function get<T>(path : String, type : Class<T>, args : Map<String, Dynamic>) : Future<T>

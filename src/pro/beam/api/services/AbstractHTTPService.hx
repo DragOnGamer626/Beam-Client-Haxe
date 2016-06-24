@@ -1,5 +1,4 @@
 package pro.beam.api.services;
-import haxe.macro.Type;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;
