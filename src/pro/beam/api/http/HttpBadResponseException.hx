@@ -1,4 +1,6 @@
 package pro.beam.api.http;
+import hex.error.Exception;
+import hex.error.NullPointerException;
 
 /**
  * ...
@@ -12,11 +14,11 @@ class HttpBadResponseException
 		try
 		{
 			trace(response.getBody());
-			throw "Error";
+			throw Exception;
 		}
 		catch (e : Dynamic)
 		{
-			trace("Error has been thrown");
+			trace("Error has been thrown: " + Std.string(e));
 			return false;
 		}
 		

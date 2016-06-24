@@ -1,4 +1,5 @@
 package pro.beam.api.http;
+
 import tink.core.Error.ErrorCode;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
@@ -21,6 +22,7 @@ class BeamHttpClient
 	{
 		this.beam = beam;
 		this.handler = handler;
+		
 		
 		handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
 		handler.add(new HttpCompleteResponse(ErrorCode.Conflict, "Test2"));
