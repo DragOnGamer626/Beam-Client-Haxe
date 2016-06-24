@@ -31,7 +31,7 @@ class Main extends Application
 	}
 }
 
-#else // NOTE: Python target is Python 3 only
+#else
 class Main
 {
 	public static function main()
