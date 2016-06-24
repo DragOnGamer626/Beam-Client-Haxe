@@ -34,11 +34,12 @@ class HttpCompleteResponseHandler
 	function checkResponseBasedOnCode(index : Int, code : Int) : HttpCompleteResponse
 	{
 		var response : HttpCompleteResponse = responses[index];
+		var res2 : HttpCompleteResponse = null;
 		
 		if (response.getStatus() == code)
-			return response;
+			 res2 = response;
 			
-		return null;
+		return res2;
 	}
 	
 	public function getResponses() : Array<HttpCompleteResponse>

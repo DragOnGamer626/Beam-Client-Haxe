@@ -26,7 +26,7 @@ class BeamHttpClient
 		handler.add(new HttpCompleteResponse(ErrorCode.Conflict, "Test2"));
 		handler.add(new HttpCompleteResponse(ErrorCode.BadRequest, "Test3"));
 		
-		trace(handler.getResponse(ErrorCode.BadRequest).getBody());
+		trace(handler.getResponse(ErrorCode.Unauthorized).getBody());
 		// Cookie Store Code Here?
 	}
 	
