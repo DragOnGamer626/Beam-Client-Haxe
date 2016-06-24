@@ -22,6 +22,7 @@ class BeamAPI
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
 	
+	var handler : HttpCompleteResponseHandler;
 	public var http : BeamHttpClient;
 	var services : ServiceManager;
 	
@@ -73,7 +74,8 @@ class BeamAPI
 	
 	function initVars() : Void
 	{
-		this.http = new BeamHttpClient(this);
+		this.handler = new HttpCompleteResponseHandler();
+		this.http = new BeamHttpClient(this, handler);
 		this.services = new ServiceManager();
 	}
 	

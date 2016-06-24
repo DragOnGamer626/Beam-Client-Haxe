@@ -17,16 +17,16 @@ class BeamHttpClient
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
 
-	public function new(beam : BeamAPI) 
+	public function new(beam : BeamAPI, handler : HttpCompleteResponseHandler) 
 	{
 		this.beam = beam;
-		this.handler = new HttpCompleteResponseHandler();
+		this.handler = handler;
 		
-		handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
+		/*handler.add(new HttpCompleteResponse(ErrorCode.Unauthorized, "Test"));
 		handler.add(new HttpCompleteResponse(ErrorCode.Conflict, "Test2"));
 		handler.add(new HttpCompleteResponse(ErrorCode.BadRequest, "Test3"));
 		
-		trace(handler.getResponse(ErrorCode.Unauthorized).getBody());
+		trace(handler.getResponse(ErrorCode.BadRequest).getBody());*/
 		// Cookie Store Code Here?
 	}
 	
