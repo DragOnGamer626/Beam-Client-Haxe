@@ -1,6 +1,7 @@
 package pro.beam.api;
 import haxe.Json;
 import pro.beam.api.http.BeamHttpClient;
+import pro.beam.api.http.HttpCompleteResponseHandler;
 import pro.beam.api.services.AbstractBeamService;
 import pro.beam.api.services.ServiceManager;
 import pro.beam.api.services.impl.ChannelsService;
@@ -27,6 +28,8 @@ class BeamAPI
 	public function new() 
 	{
 		uri = "https://beam.pro/api/v1/";
+		
+		var handler : HttpCompleteResponseHandler = new HttpCompleteResponseHandler();
 	}
 	
 	function set_uri(uri) 
