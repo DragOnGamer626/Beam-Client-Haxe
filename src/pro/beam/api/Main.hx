@@ -17,7 +17,7 @@ class Main extends Application
 
 	public function new() 
 	{
-		var beam : BeamAPI = new BeamAPI();
+		var beam : BeamAPI = new BeamAPI("http://test.com", "tOkEn-626", "Deej", "Test");
 		MainHelper.init(beam);
 		super();
 	}
@@ -38,10 +38,10 @@ class MainHelper
 {
 	public static function init(beam : BeamAPI)
 	{
-		beam.uri = "http://test.com";
+		/*beam.uri = "http://test.com";
 		beam.oauthToken = "tOkEn-626";
 		beam.httpUserName = "Deej";
-		beam.httpPassword = "Test";
+		beam.httpPassword = "Test";*/
 		beam.run();
 	}
 }

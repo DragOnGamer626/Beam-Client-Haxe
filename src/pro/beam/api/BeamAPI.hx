@@ -26,9 +26,20 @@ class BeamAPI
 	public var http : BeamHttpClient;
 	var services : ServiceManager;
 	
-	public function new() 
+	/**
+	 * All of these parameters are optional (the ? prefix) and can either be set in constructor
+	 * or individually. This is how the original code die it and how I would do it anyways.
+	 * @param	uri
+	 * @param	oauthToken
+	 * @param	httpUserName
+	 * @param	httpPassword
+	 */
+	public function new(?uri : String, ?oauthToken : String, ?httpUserName : String, ?httpPassword : String) 
 	{
-		uri = "https://beam.pro/api/v1/";
+		this.uri = "https://beam.pro/api/v1/";
+		
+		initVars();
+		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);	
 	}
 	
 	function set_uri(uri) 
@@ -51,10 +62,43 @@ class BeamAPI
 		return this.httpPassword = httpPassword;
 	}
 	
+	function checkConstructorParams(uri : String, oauthToken : String, httpUserName : String, httpPassword : String) : Void
+	{
+		checkURI(uri);
+		checkOauthToken(oauthToken);
+		checkHttpUserName(httpUserName);
+		checkHttpPassword(httpPassword);
+	}
+	
+	function checkURI(uri : String) : Void
+	{
+		checkStringNull(uri, this.uri);
+	}
+	
+	function checkOauthToken(oauthToken : String) : Void
+	{
+		checkStringNull(oauthToken, this.oauthToken);
+	}
+	
+	function checkHttpUserName(httpUserName : String) : Void
+	{
+		checkStringNull(httpUserName, this.httpUserName);
+	}
+	
+	function checkHttpPassword(httpPassword : String) : Void
+	{
+		checkStringNull(httpPassword, this.httpPassword);
+	}
+	
+	function checkStringNull(input : String, output : String) : Void
+	{
+		if (input != null) 
+			output = input;
+	}
+	
 	public function run()
 	{
 		buildJson();
-		initVars();
 		passVarsDown();
 		registerServices();
 	}
