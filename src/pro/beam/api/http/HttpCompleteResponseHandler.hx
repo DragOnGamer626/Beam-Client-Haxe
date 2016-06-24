@@ -24,16 +24,25 @@ class HttpCompleteResponseHandler
 
 		for (i in 0...responses.length)
 		{
-			if (HttpBadResponseException.checkResponse(responses[i]))
-			{
-				if(responses[i].getStatus() == code)
-					response = responses[i];
-			}
-			
+			checkResponse(i, response, code);
 			return null;
 		}
 		
 		return response;
+	}
+	
+	function checkResponse(index : Int, response : HttpCompleteResponse, code : Int) : Void
+	{
+		if (HttpBadResponseException.checkResponse(responses[index]))
+		{
+			checkResponseByCode(index, response, code);
+		}
+	}
+	
+	function checkResponseByCode(index : Int, response : HttpCompleteResponse, code : Int) : Void
+	{
+		if(responses[index].getStatus() == code)
+			response = responses[index];
 	}
 	
 	public function getResponses() : Array<HttpCompleteResponse>
