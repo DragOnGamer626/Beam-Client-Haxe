@@ -1,6 +1,7 @@
 package pro.beam.api;
 import haxe.Json;
-import hex.service.stateful.StatefulService;
+import haxe.http.Url;
+import lime.net.oauth.OAuthToken.OAuth2AccessToken;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.http.HttpCompleteResponseHandler;
 import pro.beam.api.services.AbstractBeamService;
@@ -18,31 +19,30 @@ import pro.beam.api.services.impl.UsersService;
  */
 class BeamAPI
 {
-	public var uri(default, set) : String;
+	public var uri(default, set) : Url;
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
 	
-	var handler : HttpCompleteResponseHandler;
 	public var http : BeamHttpClient;
+	
+	var handler : HttpCompleteResponseHandler;
 	var services : ServiceManager;
 	
 	/**
 	 * All of these parameters are optional (the ? prefix) and can either be set in constructor
-	 * or individually. This is how the original code die it and how I would do it anyways.
+	 * or individually. This is how the original code does it and how I would do it anyways.
 	 * @param	uri
 	 * @param	oauthToken
 	 * @param	httpUserName
 	 * @param	httpPassword
 	 */
-	public function new(?uri : String, ?oauthToken : String, ?httpUserName : String, ?httpPassword : String) 
+	public function new(?uri : Url, ?oauthToken : String, ?httpUserName : String, ?httpPassword : String) 
 	{
-		this.uri = "https://beam.pro/api/v1/";
+		this.uri = new Url("https://beam.pro/api/v1/");
 		
 		initVars();
 		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);
-		
-		var service : StatefulService = new StatefulService();
 	}
 	
 	function set_uri(uri) 
@@ -65,7 +65,7 @@ class BeamAPI
 		return this.httpPassword = httpPassword;
 	}
 	
-	function checkConstructorParams(uri : String, oauthToken : String, httpUserName : String, httpPassword : String) : Void
+	function checkConstructorParams(uri : Url, oauthToken : String, httpUserName : String, httpPassword : String) : Void
 	{
 		checkURI(uri);
 		checkOauthToken(oauthToken);
@@ -73,30 +73,28 @@ class BeamAPI
 		checkHttpPassword(httpPassword);
 	}
 	
-	function checkURI(uri : String) : Void
+	function checkURI(uri : Url) : Void
 	{
-		checkStringNull(uri, this.uri);
+		if (uri != null)
+			set_uri(uri);
 	}
 	
 	function checkOauthToken(oauthToken : String) : Void
 	{
-		checkStringNull(oauthToken, this.oauthToken);
+		if (oauthToken != null)
+			set_oauthToken(oauthToken);
 	}
 	
 	function checkHttpUserName(httpUserName : String) : Void
 	{
-		checkStringNull(httpUserName, this.httpUserName);
+		if (httpUserName != null)
+			set_httpUserName(httpUserName);
 	}
 	
 	function checkHttpPassword(httpPassword : String) : Void
 	{
-		checkStringNull(httpPassword, this.httpPassword);
-	}
-	
-	function checkStringNull(input : String, output : String) : Void
-	{
-		if (input != null) 
-			output = input;
+		if (httpPassword != null)
+			set_httpPassword(httpPassword);
 	}
 	
 	public function run()
@@ -108,7 +106,7 @@ class BeamAPI
 	
 	function buildJson() : Void
 	{
-		var uriJSON = Json.stringify({uri : uri});
+		var uriJSON = Json.stringify({uri : uri.url});
 		var oauthTokenJSON = Json.stringify({oauthToken : oauthToken});
 		var httpUserNameJSON = Json.stringify({httpUserName : httpUserName});
 		var httpPasswordJSON = Json.stringify({httpPassword : httpPassword});

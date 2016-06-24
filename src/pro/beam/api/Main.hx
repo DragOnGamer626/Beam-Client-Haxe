@@ -1,10 +1,11 @@
 package pro.beam.api;
 
-#if (cpp || flash)
+#if (cpp || flash || js || html5)
 import lime.app.Application;
 #elseif java
 import java.Lib;
 #end
+import haxe.http.Url;
 import pro.beam.api.BeamAPI;
 
 /**
@@ -13,32 +14,31 @@ import pro.beam.api.BeamAPI;
  */
 #if cpp
 class Main extends Application 
-{
-
+{	
 	public function new() 
 	{
-		var beam : BeamAPI = new BeamAPI("http://test.com", "tOkEn-626", "Deej", "Test");
+		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);
 		MainHelper.init(beam);
 		super();
 	}
 }
 
-#elseif flash
+#elseif (flash || js || html5)
 class Main extends Application
 {
 	public static function main()
 	{
-		var beam : BeamAPI = new BeamAPI();		
+		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);
 		MainHelper.init(beam);
 	}
 }
 
-#else // NOTE: Python 3 target only supported
+#else // NOTE: Python target is Python 3 only
 class Main
 {
 	public static function main()
 	{
-		var beam : BeamAPI = new BeamAPI();		
+		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);	
 		MainHelper.init(beam);
 	}
 }
@@ -48,10 +48,11 @@ class MainHelper
 {
 	public static function init(beam : BeamAPI)
 	{
-		/*beam.uri = "http://test.com";
-		beam.oauthToken = "tOkEn-626";
-		beam.httpUserName = "Deej";
-		beam.httpPassword = "Test";*/
 		beam.run();
 	}
+	
+	public static var URL : Url = new Url("test.com");
+	public static var token : String = "tOkEn-626";
+	public static var httpUN : String = "Deej";
+	public static var httpPW : String = "Test";
 }

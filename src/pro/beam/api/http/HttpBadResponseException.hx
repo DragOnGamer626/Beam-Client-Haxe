@@ -1,10 +1,5 @@
 package pro.beam.api.http;
 
-#if (flash || js || html5)
-import hex.error.Exception;
-import hex.error.NullPointerException;
-#end
-
 /**
  * ...
  * @author DragOnGamer626
@@ -14,7 +9,7 @@ class HttpBadResponseException
 	
 	public static function checkResponse(response : HttpCompleteResponse) : Bool
 	{
-		try
+		/*try
 		{
 			trace(response.getBody());
 		#if (flash || js || html5)
@@ -27,7 +22,7 @@ class HttpBadResponseException
 		{
 			trace("Error has been thrown: " + Std.string(e));
 			return false;
-		}
+		}*/
 		
 		return true;
 	}
