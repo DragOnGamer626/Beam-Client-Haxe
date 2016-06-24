@@ -12,11 +12,11 @@ class HttpBadResponseException
 		try
 		{
 			trace(response.getBody());
-			throw "Test";
+			throw "Error";
 		}
 		catch (e : Dynamic)
 		{
-			trace("Please Kill Me");
+			trace("Error has been thrown");
 			return false;
 		}
 		
