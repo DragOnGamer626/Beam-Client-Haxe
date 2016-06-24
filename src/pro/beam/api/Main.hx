@@ -2,8 +2,6 @@ package pro.beam.api;
 
 #if (cpp || flash || js || html5 || neko)
 import lime.app.Application;
-#elseif java
-import java.Lib;
 #end
 import haxe.http.Url;
 import pro.beam.api.BeamAPI;
