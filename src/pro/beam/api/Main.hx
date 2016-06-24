@@ -1,6 +1,6 @@
 package pro.beam.api;
 
-#if (cpp || flash || js || html5)
+#if (cpp || flash || js || html5 || neko)
 import lime.app.Application;
 #elseif java
 import java.Lib;
@@ -12,7 +12,7 @@ import pro.beam.api.BeamAPI;
  * ...
  * @author DragOnGamer626
  */
-#if cpp
+#if (cpp || neko)
 class Main extends Application 
 {	
 	public function new() 

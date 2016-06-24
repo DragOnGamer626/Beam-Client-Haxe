@@ -88,7 +88,5 @@ class BeamHttpClient
 		trace(http + "oauthToken:" + oauthToken);
 		trace(http + "httpUserName:" + httpUserName);
 		trace(http + "httpPassword:" + httpPassword);
-		
-		trace(handler.getResponse(0).getBody());
 	}
 }
