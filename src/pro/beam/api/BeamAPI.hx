@@ -40,7 +40,7 @@ class BeamAPI
 	 */
 	public function new(?uri : Url, ?oauthToken : String, ?httpUserName : String, ?httpPassword : String) 
 	{
-		this.uri = Url.parse("https://beam.pro/api/v1/");
+		this.uri = "https://beam.pro/api/v1/";
 		
 		initVars();
 		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);

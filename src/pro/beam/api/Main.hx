@@ -40,7 +40,7 @@ class MainHelper
 		beam.run();
 	}
 	
-	public static var URL : Url = Url.parse("test.com");
+	public static var URL : Url = "test.com";
 	public static var token : String = "tOkEn-626";
 	public static var httpUN : String = "Deej";
 	public static var httpPW : String = "Test";

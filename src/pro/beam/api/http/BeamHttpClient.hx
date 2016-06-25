@@ -1,8 +1,11 @@
 package pro.beam.api.http;
 
 import haxe.Http;
+import haxe.macro.Expr.ImportMode;
+import tink.core.Any;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
+import tink.core.Pair.MPair;
 
 /**
  * ...
@@ -104,9 +107,9 @@ class BeamHttpClient
 		return null;
 	}
 	
-	public static function getArgumentsBuilder() : Map<String, Dynamic>
+	public static function getArgumentsBuilder() : Map<String, Any>
 	{
-		return new Map<String, Dynamic>();
+		return new Map<String, Any>();
 	}
 	
 	public function printVars()

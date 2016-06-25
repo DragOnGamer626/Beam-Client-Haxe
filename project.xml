@@ -8,9 +8,10 @@
 	
 	<haxelib name="lime" />
 	<haxelib name="tink_core" />
+	<haxelib name="tink_concurrent" />
 	<haxelib name="tink_http" />
 	<haxelib name="tink_url" />
+	<haxelib name="tink_web" />
 	<haxelib name="tink_await" />
-	<haxelib name="http-client" />
 	
 </project>
