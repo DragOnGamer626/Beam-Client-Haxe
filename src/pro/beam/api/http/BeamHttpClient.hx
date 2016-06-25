@@ -90,10 +90,10 @@ class BeamHttpClient
 		if (httpUserName != null && httpPassword != null)
 		{
 			var cp : Auth = new Auth(httpUserName, httpPassword);
-			var header : Header = new Header([HeaderField.ofString("auth:" + Std.string(cp))]);
-			
-			trace(header.get("auth"));
-			
+			var header : Header = new Header([{
+				HeaderField.ofString("auth:" + Std.string(cp));
+			}]);
+						
 			this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", header.fields); // CookieStore - Yayyyyyy!!!!
 			this.request = new IncomingRequest("http://localhost", cookieStore, null);
 		}
