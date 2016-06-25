@@ -1,11 +1,13 @@
 package pro.beam.api.http;
 
-import haxe.Http;
-import haxe.macro.Expr.ImportMode;
 import tink.core.Any;
 import tink.core.Future;
-import pro.beam.api.BeamAPI;
 import tink.core.Pair;
+import tink.http.Method;
+import tink.http.Header;
+
+import pro.beam.api.BeamAPI;
+
 
 /**
  * ...
@@ -15,6 +17,7 @@ class BeamHttpClient
 {
 	@:protected var beam : BeamAPI;
 	@:protected var handler : HttpCompleteResponseHandler;
+	@:protected var cookieStore : Header;
 		
 	public var userAgent(default, set) : String;
 	public var oauthToken(default, set) : String;
@@ -25,10 +28,10 @@ class BeamHttpClient
 	{
 		this.beam = beam;
 		this.handler = handler;
+		this.cookieStore = new Header(); // CookieStore - Yayyyyyy!!!!
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
-		
-		// Cookie Store Code Here?
+		checkHttp(httpUserName : String, httpPassword : String);
 	}
 	
 	function set_userAgent(userAgent : String)
@@ -74,6 +77,14 @@ class BeamHttpClient
 	{
 		if (httpPassword != null)
 			set_httpPassword(httpPassword);
+	}
+	
+	function checkHttp(httpUserName : String, httpPassword : String)
+	{
+		if (httpUserName != null && httpPassword != null)
+		{
+			
+		}
 	}
 	
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>

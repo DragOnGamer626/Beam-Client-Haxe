@@ -6,6 +6,7 @@ import pro.beam.api.http.HttpCompleteResponse;
 import tink.core.Error;
 import tink.core.Error.ErrorCode;
 import tink.core.Future;
+import tink.core.Outcome;
 
 /**
  * ...
@@ -13,5 +14,9 @@ import tink.core.Future;
  */
 @:abstract class AbstractFutureChecker<V, E>
 {
-	
+	public function check(future : Future<V>) : Future<V>
+	{
+		// Stub
+		return future;
+	}
 }

@@ -4,12 +4,9 @@ package pro.beam.api.http;
  * ...
  * @author DragOnGamer626
  */
-class RequestType
+enum RequestType
 {
-
-	public function new() 
-	{
-		
-	}
+	GET;
+	POST;
 	
 }
