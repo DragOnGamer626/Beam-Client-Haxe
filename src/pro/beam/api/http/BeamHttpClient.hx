@@ -148,16 +148,19 @@ class BeamHttpClient
 		return f; // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
 		// Tinkerbell doesn't have documentation that makes much sense with this stuff
 	}
-	
+
 	function getUserAgent() : String
 	{
+		#if (cpp || neko)
 		var version : String;
+		var name : String = Sys.systemName();
 		
-		if (this.userAgent == null)
+		if (this.userAgent == null && (name == "Windows" || name == "OSX" || name == "Linux"))
 		{
 			version = checkVersion(this.beam.version);
-			this.userAgent = "BeamClient ver. " + version + " (" + Sys.systemName() + ")";
+			this.userAgent = "BeamClient ver. " + version + " (" + name + ")";
 		}
+		#end
 		
 		return this.userAgent;
 	}
