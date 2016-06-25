@@ -31,7 +31,7 @@ class BeamHttpClient
 		this.cookieStore = new Header(); // CookieStore - Yayyyyyy!!!!
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
-		checkHttp(httpUserName : String, httpPassword : String);
+		checkHttp(httpUserName, httpPassword);
 	}
 	
 	function set_userAgent(userAgent : String)
@@ -79,7 +79,7 @@ class BeamHttpClient
 			set_httpPassword(httpPassword);
 	}
 	
-	function checkHttp(httpUserName : String, httpPassword : String)
+	function checkHttp(httpUserName : String, httpPassword : String) : Void
 	{
 		if (httpUserName != null && httpPassword != null)
 		{
