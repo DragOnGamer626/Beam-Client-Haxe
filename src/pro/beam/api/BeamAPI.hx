@@ -12,6 +12,7 @@ import pro.beam.api.services.impl.EmotesService;
 import pro.beam.api.services.impl.TetrisService;
 import pro.beam.api.services.impl.TypesService;
 import pro.beam.api.services.impl.UsersService;
+import tink.core.Future;
 
 /**
  * ...
@@ -25,7 +26,7 @@ class BeamAPI
 	public var httpPassword(default, set) : String;
 	
 	public var http : BeamHttpClient;
-	
+		
 	var handler : HttpCompleteResponseHandler;
 	var services : ServiceManager;
 	

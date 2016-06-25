@@ -20,23 +20,14 @@ class Main extends Application
 		super();
 	}
 }
+#end
 
-#elseif (flash || js || html5)
+#if (flash || js || html5)
 class Main extends Application
 {
 	public static function main()
 	{
 		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);
-		MainHelper.init(beam);
-	}
-}
-
-#else
-class Main
-{
-	public static function main()
-	{
-		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);	
 		MainHelper.init(beam);
 	}
 }

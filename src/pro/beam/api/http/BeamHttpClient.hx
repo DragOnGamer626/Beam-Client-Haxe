@@ -1,5 +1,6 @@
 package pro.beam.api.http;
 
+import haxe.Http;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
 
@@ -73,7 +74,7 @@ class BeamHttpClient
 	
 	public function get<T>(path : String, type : Class<T>, args : Map<String, Dynamic>) : Future<T>
 	{
-		return null; // Stub
+		return null;
 	}
 	
 	public function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
@@ -97,6 +98,11 @@ class BeamHttpClient
 	}
 	
 	// Stub
+	
+	function executor<T>() : Future<T>
+	{
+		return null;
+	}
 	
 	public static function getArgumentsBuilder() : Map<String, Dynamic>
 	{

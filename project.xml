@@ -8,6 +8,8 @@
 	
 	<haxelib name="lime" />
 	<haxelib name="tink_core" />
+	<haxelib name="tink_http" />
+	<haxelib name="tink_url" />
 	<haxelib name="http-client" />
 	
 </project>
