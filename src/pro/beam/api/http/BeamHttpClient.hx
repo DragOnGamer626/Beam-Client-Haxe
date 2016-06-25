@@ -4,6 +4,7 @@ import tink.Url;
 import tink.core.Any;
 import tink.core.Future;
 import tink.core.Pair;
+import tink.http.Client;
 import tink.http.Method;
 import tink.http.Header;
 import tink.http.Request.IncomingRequest;
@@ -87,16 +88,21 @@ class BeamHttpClient
 	
 	function checkHttp(httpUserName : String, httpPassword : String) : Void
 	{
+		var cp : Auth = null;
 		if (httpUserName != null && httpPassword != null)
-		{
-			var cp : Auth = new Auth(httpUserName, httpPassword);
-			var header : Header = new Header([{
-				HeaderField.ofString("auth:" + Std.string(cp));
-			}]);
-						
-			this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", header.fields); // CookieStore - Yayyyyyy!!!!
-			this.request = new IncomingRequest("http://localhost", cookieStore, null);
-		}
+			cp = new Auth(httpUserName, httpPassword); // CredentialsProvider
+			
+		else
+			cp = null;
+			
+		var header : Header = new Header([{
+			HeaderField.ofString("auth:" + Std.string(cp));
+		}]); // I haven't fully tested, but this seems to be how I pump data into my Cookies
+	
+		this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", header.fields); // CookieStore - Yayyyyyy!!!!
+		this.request = new IncomingRequest("http://localhost", cookieStore, null);
+		
+		trace(this.request.header.byName("auth"));
 	}
 	
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
