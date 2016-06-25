@@ -1,6 +1,6 @@
 package pro.beam.api;
 import haxe.Json;
-import haxe.http.Url;
+import tink.Url;
 import lime.net.oauth.OAuthToken.OAuth2AccessToken;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.http.HttpCompleteResponseHandler;
@@ -40,7 +40,7 @@ class BeamAPI
 	 */
 	public function new(?uri : Url, ?oauthToken : String, ?httpUserName : String, ?httpPassword : String) 
 	{
-		this.uri = new Url("https://beam.pro/api/v1/");
+		this.uri = Url.parse("https://beam.pro/api/v1/");
 		
 		initVars();
 		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);
@@ -109,7 +109,7 @@ class BeamAPI
 	
 	function buildJson() : Void
 	{
-		var uriJSON = Json.stringify({uri : uri.url});
+		var uriJSON = Json.stringify({uri : uri.path});
 		var oauthTokenJSON = Json.stringify({oauthToken : oauthToken});
 		var httpUserNameJSON = Json.stringify({httpUserName : httpUserName});
 		var httpPasswordJSON = Json.stringify({httpPassword : httpPassword});

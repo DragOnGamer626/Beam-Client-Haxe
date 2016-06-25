@@ -3,7 +3,7 @@ package pro.beam.api;
 #if (cpp || flash || js || html5 || neko)
 import lime.app.Application;
 #end
-import haxe.http.Url;
+import tink.Url;
 import pro.beam.api.BeamAPI;
 
 /**
@@ -40,7 +40,7 @@ class MainHelper
 		beam.run();
 	}
 	
-	public static var URL : Url = new Url("test.com");
+	public static var URL : Url = Url.parse("test.com");
 	public static var token : String = "tOkEn-626";
 	public static var httpUN : String = "Deej";
 	public static var httpPW : String = "Test";
