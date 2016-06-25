@@ -1,5 +1,7 @@
 package pro.beam.api.services.impl;
 import tink.core.Future;
+import tink.core.Any;
+import tink.core.Pair.MPair;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.services.AbstractHTTPService;
 import pro.beam.api.response.channels.ShowChannelsResponse;
@@ -23,14 +25,14 @@ class TypesService extends AbstractHTTPService
 		if (onlineRestriction == null)
 			onlineRestriction = OnlineRestriction.NONE;
 			
-		return this.get("", Type.resolveClass("pro.beam.api.response.channels.ShowSlugsResponse"), new Map<String, Dynamic>());
+		return this.get("", Type.resolveClass("pro.beam.api.response.channels.ShowSlugsResponse"), new Array<MPair<String, Any>>());
 	}
 	
 	public function channels(id : Int, page : Int, limit : Int, 
 		attribute : Attributes, ordering : Ordering, onlineRestriction : OnlineRestriction,  
 		only : Attributes) : Future<ShowChannelsResponse>
 	{
-		var args : Map<String, Dynamic> = new Map<String, Dynamic>();
+		var args : Array<MPair<String, Any>> = new Array<MPair<String, Any>>();
 		var orderJson : String = "";
 		
 		if (attribute != null)
@@ -46,16 +48,16 @@ class TypesService extends AbstractHTTPService
 				};
 			}
 			
-			args.set("order", getAttribJson(attribute) + ":" + orderJson);
+			args.push(new MPair<String, Any>("order", getAttribJson(attribute) + ":" + orderJson));
 		};
 		
 		if (only != null)
 		{
-			args.set("only", getAttribJson(only));
+			args.push(new MPair<String, Any>("only", getAttribJson(only)));
 		};
 		
-		args.set("page", Math.max(0, page));
-		args.set("limit", Math.min(50, limit));
+		args.push(new MPair<String, Any>("page", Math.max(0, page)));
+		args.push(new MPair<String, Any>("limit", Math.min(50, limit)));
 		
 		if (onlineRestriction != null)
 			ShowSlugsResponse.online = onlineRestriction;

@@ -1,6 +1,8 @@
 package pro.beam.api.response.channels;
 
 import pro.beam.api.resource.channel.BeamChannel;
+import tink.core.Any;
+import tink.core.Pair;
 /**
  * ...
  * @author DragOnGamer626
@@ -9,17 +11,17 @@ class ShowSlugsResponse extends List<ChannelType>
 {
 	public static var online : OnlineRestriction;
 	
-	public static function putParams(builder : Map<String, Dynamic>) : Bool
+	public static function putParams(builder : Array<MPair<String, Any>>) : Bool
 	{
 		if (online != null)
 		{
 			switch(online)
 			{
 				case ONLINE:
-					builder.set("where", "online.neq.0");
+					builder.push(new MPair<String, Any>("where", "online.neq.0"));
 					return true;
 				case OFFLINE:
-					builder.set("where", "online.eq.0");
+					builder.push(new MPair<String, Any>("where", "online.eq.0"));
 					return true;
 				case NONE:
 					return false;

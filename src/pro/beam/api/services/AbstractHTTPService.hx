@@ -1,5 +1,7 @@
 package pro.beam.api.services;
+import tink.core.Any;
 import tink.core.Future;
+import tink.core.Pair.MPair;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;
 
@@ -19,27 +21,27 @@ import pro.beam.api.http.BeamHttpClient;
 		this.path = path;
 	}
 	
-	function get<T>(path : String, type : Class<T>, parameters : Map<String, Dynamic>) : Future<T>
+	function get<T>(path : String, type : Class<T>, parameters : Array<MPair<String, Any>>) : Future<T>
 	{
 		return this.http.get(this.getPath(path), type, parameters);
 	}
 	
-	function patch<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
+	function patch<T>(path : String, type : Class<T>, args : Array<Any>) : Future<T>
 	{
 		return this.http.patch(this.getPath(path), type, args);
 	}
 	
-	function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
+	function post<T>(path : String, type : Class<T>, args : Array<Any>) : Future<T>
 	{
 		return this.http.post(this.getPath(path), type, args);
 	}
 	
-	function put<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
+	function put<T>(path : String, type : Class<T>, args : Array<Any>) : Future<T>
 	{
 		return this.http.put(this.getPath(path), type, args);
 	}
 	
-	function delete<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
+	function delete<T>(path : String, type : Class<T>, args : Array<Any>) : Future<T>
 	{
 		return this.http.delete(this.getPath(path), type, args);
 	}
