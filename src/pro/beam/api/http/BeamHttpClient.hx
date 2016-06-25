@@ -117,34 +117,34 @@ class BeamHttpClient
 	
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
 	{
-		return null;
+		return this.beam.executor;
 	}
 	
 	public function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return null; // Stub
+		return this.beam.executor; // Stub
 	}
 	
 	public function put<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return null; // Stub
+		return this.beam.executor; // Stub
 	}
 	
 	public function patch<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return null; // Stub
+		return this.beam.executor; // Stub
 	}
 	
 	public function delete<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return null; // Stub
+		return this.beam.executor; // Stub
 	}
 	
-	function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Callback<T>
+	/*function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Future<T>
 	{
-		return null; // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
+		return new Future<T>(new CallbackLink<T>()); // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
 		// Tinkerbell doesn't have documentation that makes much sense with this stuff
-	}
+	}*/
 	
 	function getUserAgent() : String
 	{

@@ -31,6 +31,8 @@ class BeamAPI
 		
 	var handler : HttpCompleteResponseHandler;
 	var services : ServiceManager;
+	
+public var executor : Dynamic;
 		
 	/**
 	 * All of these parameters are optional (the ? prefix) and can either be set in constructor
@@ -51,6 +53,7 @@ class BeamAPI
 	{
 		this.handler = new HttpCompleteResponseHandler();
 		this.services = new ServiceManager();
+		this.executor = new Future<T>(null);
 	}
 		
 	function set_version(version : Float)
