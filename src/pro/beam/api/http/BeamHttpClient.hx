@@ -98,21 +98,7 @@ class BeamHttpClient
 	
 	function buildContext()
 	{		
-		var header : Header = new Header([{
-			HeaderField.ofString("auth:" + Std.string(cp));
-			HeaderField.ofString("path:" + this.beam.uri);
-		}]); // I haven't fully tested, but this seems to be how I pump data into my Cookies
-	
-		this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", header.fields); // CookieStore - Yayyyyyy!!!!
-		this.request = new IncomingRequest("http://localhost", cookieStore, null);
 		
-		var option : Option<String> = OutcomeTools.toOption(this.request.header.byName("path"));
-		var uri = option.getParameters().toString();
-		uri = uri.substring(1, uri.length - 1);
-		
-		this.uriJson = uri;
-		
-		//trace(cp.user + ":" + cp.password);
 	}
 	
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
@@ -138,6 +124,18 @@ class BeamHttpClient
 	public function delete<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
 		return this.beam.executor; // Stub
+	}
+	
+	function makeRequest(method : Method, uri : Url, ?fields) : IncomingRequest
+	{
+		var header : Header = new Header([{
+			HeaderField.ofString("auth:" + Std.string(cp));
+			HeaderField.ofString("path:" + uri);
+		}]);
+		
+		var incoming : IncomingRequestHeader = new IncomingRequestHeader(method, uri, Std.string(this.beam.version), header.fields);
+		
+		return new IncomingRequest(incoming.uri, incoming, null);
 	}
 	
 	function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Future<T>
