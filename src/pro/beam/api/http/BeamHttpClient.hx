@@ -1,8 +1,10 @@
 package pro.beam.api.http;
 
+import haxe.ds.Option;
 import tink.Url;
 import tink.core.Any;
 import tink.core.Future;
+import tink.core.Outcome;
 import tink.core.Pair;
 import tink.http.Client;
 import tink.http.Method;
@@ -25,12 +27,15 @@ class BeamHttpClient
 	@:protected var beam : BeamAPI;
 	@:protected var handler : HttpCompleteResponseHandler;
 	@:protected var cookieStore : IncomingRequestHeader;
+	@:protected var cp : Auth;
 	@:protected var request : IncomingRequest;
 		
 	public var userAgent(default, set) : String;
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
+	
+	public var uriJson : String;
 
 	public function new(beam : BeamAPI, handler : HttpCompleteResponseHandler, ?oauthToken : String, httpUserName : String, httpPassword : String) 
 	{
@@ -38,7 +43,8 @@ class BeamHttpClient
 		this.handler = handler;
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
-		checkHttp(httpUserName, httpPassword);
+		buildCredentials(httpUserName, httpPassword); // Auth is same as CredentialsProvider in Java
+		buildContext(); // IncomingRequestHeader seems to be like HttpClientContext but I might be wrong
 	}
 	
 	function set_userAgent(userAgent : String)
@@ -86,23 +92,31 @@ class BeamHttpClient
 			set_httpPassword(httpPassword);
 	}
 	
-	function checkHttp(httpUserName : String, httpPassword : String) : Void
-	{
-		var cp : Auth = null;
+	function buildCredentials(httpUserName : String, httpPassword : String) : Void
+	{	
 		if (httpUserName != null && httpPassword != null)
 			cp = new Auth(httpUserName, httpPassword); // CredentialsProvider
-			
 		else
 			cp = null;
-			
+	}
+	
+	function buildContext()
+	{		
 		var header : Header = new Header([{
 			HeaderField.ofString("auth:" + Std.string(cp));
+			HeaderField.ofString("path:" + this.beam.uri);
 		}]); // I haven't fully tested, but this seems to be how I pump data into my Cookies
 	
 		this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", header.fields); // CookieStore - Yayyyyyy!!!!
 		this.request = new IncomingRequest("http://localhost", cookieStore, null);
 		
-		trace(this.request.header.byName("auth"));
+		var option : Option<String> = OutcomeTools.toOption(this.request.header.byName("path"));
+		var uri = option.getParameters().toString();
+		uri = uri.substring(1, uri.length - 1);
+		
+		this.uriJson = uri;
+		
+		//trace(cp.user + ":" + cp.password);
 	}
 	
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
@@ -138,7 +152,7 @@ class BeamHttpClient
 	}
 	
 	// This is how you make an ImmutableMap type thingy in Haxe (or at least, it's much easier than using a regular Map
-	// and setting it ReadOnly. So Much RAAAAGGGGEEEE about this.
+	// and setting it ReadOnly. So Much RAAAAGGGGEEEE about this.)
 	public static function getArgumentsBuilder() : Array<Pair<String, Any>>
 	{
 		return new Array<Pair<String, Any>>();
