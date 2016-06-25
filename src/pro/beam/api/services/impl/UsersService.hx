@@ -5,6 +5,7 @@ import pro.beam.api.BeamAPI;
 import pro.beam.api.response.users.UserSearchResponse;
 import pro.beam.api.services.AbstractHTTPService;
 import pro.beam.api.resource.BeamUser;
+import tink.core.Outcome;
 
 /**
  * ...
@@ -29,7 +30,20 @@ class UsersService extends AbstractHTTPService
 		return this.post("current/refresh", Type.resolveClass("pro.beam.api.resource.BeamUser"), null);
 	}
 	
-	// Stub
+	public function login<V, E>(userName : String, password : String, ?authCode : String) : Future<Outcome<V, E>>
+	{
+		if (authCode.length != 6)
+		{
+			//trace("Two Factor Authentication Code must be at least ");
+			throw Outcome.Failure("Two Factor Authentication Code must be at least 6 digits long (was " + authCode.length + ")");
+		}
+		else 
+		{
+			// Need to insert Checker Here
+		}
+	
+		return null;
+	}
 	
 	public function logout() : Future<String>
 	{

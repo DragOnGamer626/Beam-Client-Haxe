@@ -104,26 +104,31 @@ class BeamHttpClient
 	
 	public function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return this.beam.executor; // Stub
+		return this.makeCallable(this.makeRequest(Method.POST, path, args), type); // Stub
 	}
 	
 	public function put<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return this.beam.executor; // Stub
+		return this.makeCallable(this.makeRequest(Method.PUT, path, args), type); // Stub
 	}
 	
 	public function patch<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return this.beam.executor; // Stub
+		return this.makeCallable(this.makeRequest(Method.PATCH, path, args), type); // Stub
 	}
 	
 	public function delete<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
 	{
-		return this.beam.executor; // Stub
+		return this.makeCallable(this.makeRequest(Method.DELETE, path, args), type); // Stub
 	}
 	
 	function makeRequest(method : Method, uri : Url, ?fields) : IncomingRequest
 	{
+		if (oauthToken != null)
+		{
+			// Stub
+		}
+		
 		var header : Header = new Header([{
 			HeaderField.ofString("auth:" + Std.string(cp));
 			HeaderField.ofString("path:" + uri);

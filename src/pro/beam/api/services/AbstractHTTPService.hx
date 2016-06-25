@@ -53,6 +53,6 @@ import pro.beam.api.http.BeamHttpClient;
 			relative = "/" + relative;
 		}
 		
-		return this.beam.uri + this.path + relative;
+		return this.beam.basePath + this.path + relative;
 	}
 }
