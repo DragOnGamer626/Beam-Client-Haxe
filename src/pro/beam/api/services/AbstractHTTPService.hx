@@ -1,7 +1,7 @@
 package pro.beam.api.services;
 import tink.core.Any;
 import tink.core.Future;
-import tink.core.Pair.MPair;
+import tink.core.Pair.Pair;
 import pro.beam.api.BeamAPI;
 import pro.beam.api.http.BeamHttpClient;
 
@@ -21,7 +21,7 @@ import pro.beam.api.http.BeamHttpClient;
 		this.path = path;
 	}
 	
-	function get<T>(path : String, type : Class<T>, parameters : Array<MPair<String, Any>>) : Future<T>
+	function get<T>(path : String, type : Class<T>, parameters : Array<Pair<String, Any>>) : Future<T>
 	{
 		return this.http.get(this.getPath(path), type, parameters);
 	}

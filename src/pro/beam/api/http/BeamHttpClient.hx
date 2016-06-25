@@ -6,7 +6,6 @@ import tink.core.Any;
 import tink.core.Future;
 import pro.beam.api.BeamAPI;
 import tink.core.Pair;
-import tink.core.Pair.MPair;
 
 /**
  * ...
@@ -14,9 +13,9 @@ import tink.core.Pair.MPair;
  */
 class BeamHttpClient
 {
-	var beam : BeamAPI;
-	var handler : HttpCompleteResponseHandler;
-	
+	@:protected var beam : BeamAPI;
+	@:protected var handler : HttpCompleteResponseHandler;
+		
 	public var userAgent(default, set) : String;
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
@@ -28,6 +27,7 @@ class BeamHttpClient
 		this.handler = handler;
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
+		
 		// Cookie Store Code Here?
 	}
 	
@@ -76,7 +76,7 @@ class BeamHttpClient
 			set_httpPassword(httpPassword);
 	}
 	
-	public function get<T>(path : String, type : Class<T>, args :  Array<MPair<String, Any>>) : Future<T>
+	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
 	{
 		return null;
 	}
@@ -110,9 +110,9 @@ class BeamHttpClient
 	
 	// This is how you make an ImmutableMap type thingy in Haxe (or at least, it's much easier than using a regular Map
 	// and setting it ReadOnly. So Much RAAAAGGGGEEEE about this.
-	public static function getArgumentsBuilder() : Array<MPair<String, Any>>
+	public static function getArgumentsBuilder() : Array<Pair<String, Any>>
 	{
-		return new Array<MPair<String, Any>>();
+		return new Array<Pair<String, Any>>();
 	}
 	
 	public function printVars()

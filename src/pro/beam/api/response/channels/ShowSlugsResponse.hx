@@ -11,17 +11,17 @@ class ShowSlugsResponse extends List<ChannelType>
 {
 	public static var online : OnlineRestriction;
 	
-	public static function putParams(builder : Array<MPair<String, Any>>) : Bool
+	public static function putParams(builder : Array<Pair<String, Any>>) : Bool
 	{
 		if (online != null)
 		{
 			switch(online)
 			{
 				case ONLINE:
-					builder.push(new MPair<String, Any>("where", "online.neq.0"));
+					builder.push(new Pair<String, Any>("where", "online.neq.0"));
 					return true;
 				case OFFLINE:
-					builder.push(new MPair<String, Any>("where", "online.eq.0"));
+					builder.push(new Pair<String, Any>("where", "online.eq.0"));
 					return true;
 				case NONE:
 					return false;
