@@ -23,6 +23,7 @@ class BeamAPI
 {
 	public var version(default, set) : Float;
 	public var uri(default, set) : Url;
+	public var basePath(default, set) : String;
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
 	public var httpPassword(default, set) : String;
@@ -64,6 +65,11 @@ public var executor : Dynamic;
 	function set_uri(uri) 
 	{
 		return this.uri = uri;
+	}
+	
+	function set_basePath(basePath)
+	{
+		return this.basePath = basePath;
 	}
 	
 	function set_oauthToken(oauthToken)

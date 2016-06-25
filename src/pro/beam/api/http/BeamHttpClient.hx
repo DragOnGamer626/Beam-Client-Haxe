@@ -11,6 +11,7 @@ using tink.http.Request;
 using tink.http.Header;
 using tink.core.Outcome;
 using tink.core.Callback;
+using tink.core.Pair;
 
 import pro.beam.api.BeamAPI;
 
@@ -97,7 +98,8 @@ class BeamHttpClient
 
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
 	{
-		return this.executor().map(null);
+		return this.makeCallable(this.makeRequest(Method.GET, this.buildFromRelativePath(path, args)), type);
+		//return this.executor().flatMap(future);
 	}
 	
 	public function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
@@ -134,11 +136,23 @@ class BeamHttpClient
 	
 	function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Future<T>
 	{
-		var f : Future<T> = new Future<T>(null);
 		var self : BeamHttpClient = this;
 		
-		return f; // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
+		return this.executor(); // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
 		// Tinkerbell doesn't have documentation that makes much sense with this stuff
+	}
+	
+	function buildFromRelativePath(path : String, args : Array<Pair<String, Any>>) : Url
+	{
+		if (request != null)
+		{
+			var option : Option<HeaderValue> = OutcomeTools.toOption(request.header.byName("path"));
+			var string : String = option.getParameters().toString();
+			
+			return Url.parse(StringTools.urlEncode(string));
+		}
+		
+		return null;
 	}
 
 	function getUserAgent() : String
