@@ -2,19 +2,15 @@ package pro.beam.api.http;
 
 import haxe.ds.Option;
 import tink.Url;
-import tink.core.Any;
-import tink.core.Future;
-import tink.core.Outcome;
-import tink.core.Pair;
-import tink.http.Client;
-import tink.http.Method;
-import tink.http.Header;
-import tink.http.Request.IncomingRequest;
-import tink.http.Request.IncomingRequestBody;
-import tink.http.Request.IncomingRequestHeader;
-import tink.http.StructuredBody;
-import tink.url.Auth;
-import tink.url.Host;
+import tink.concurrent.*;
+import tink.core.*;
+import tink.http.*;
+import tink.url.*;
+
+using tink.http.Request;
+using tink.http.Header;
+using tink.core.Outcome;
+using tink.core.Callback;
 
 import pro.beam.api.BeamAPI;
 
@@ -144,6 +140,12 @@ class BeamHttpClient
 		return null; // Stub
 	}
 	
+	function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Callback<T>
+	{
+		return null; // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
+		// Tinkerbell doesn't have documentation that makes much sense with this stuff
+	}
+	
 	function getUserAgent() : String
 	{
 		var version : String;
@@ -165,10 +167,10 @@ class BeamHttpClient
 		return null;
 	}
 	
-	function executor<T>() : Future<T>
+	/*public function executor<T>() : Future<T>
 	{
-		return null;
-	}
+		return new Future<T>();
+	}*/
 	
 	// This is how you make an ImmutableMap type thingy in Haxe (or at least, it's much easier than using a regular Map
 	// and setting it ReadOnly. So Much RAAAAGGGGEEEE about this.)

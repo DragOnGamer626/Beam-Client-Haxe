@@ -1,7 +1,6 @@
 package pro.beam.api;
 import haxe.Json;
 import tink.Url;
-import lime.net.oauth.OAuthToken.OAuth2AccessToken;
 import pro.beam.api.http.BeamHttpClient;
 import pro.beam.api.http.HttpCompleteResponseHandler;
 import pro.beam.api.services.AbstractBeamService;
@@ -12,6 +11,8 @@ import pro.beam.api.services.impl.EmotesService;
 import pro.beam.api.services.impl.TetrisService;
 import pro.beam.api.services.impl.TypesService;
 import pro.beam.api.services.impl.UsersService;
+import tink.core.Any;
+import tink.core.Callback;
 import tink.core.Future;
 
 /**
@@ -30,7 +31,7 @@ class BeamAPI
 		
 	var handler : HttpCompleteResponseHandler;
 	var services : ServiceManager;
-	
+		
 	/**
 	 * All of these parameters are optional (the ? prefix) and can either be set in constructor
 	 * or individually. This is how the original code does it and how I would do it anyways.
@@ -40,13 +41,16 @@ class BeamAPI
 	 * @param	httpPassword
 	 */
 	public function new(?uri : Url, ?oauthToken : String, ?httpUserName : String, ?httpPassword : String) 
-	{
-		//this.uri = Url.parse("https://beam.pro/api/v1/";
-		
+	{		
 		initVars();
 		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);
 		this.http = new BeamHttpClient(this, handler, oauthToken, httpUserName, httpPassword);
-
+	}
+	
+	function initVars<T>() : Void
+	{
+		this.handler = new HttpCompleteResponseHandler();
+		this.services = new ServiceManager();
 	}
 		
 	function set_version(version : Float)
@@ -124,12 +128,6 @@ class BeamAPI
 		trace(oauthTokenJSON);
 		trace(httpUserNameJSON);
 		trace(httpPasswordJSON);
-	}
-	
-	function initVars() : Void
-	{
-		this.handler = new HttpCompleteResponseHandler();
-		this.services = new ServiceManager();
 	}
 	
 	function passVarsDown() : Void
