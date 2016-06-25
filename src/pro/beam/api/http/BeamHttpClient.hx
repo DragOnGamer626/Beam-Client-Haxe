@@ -117,7 +117,7 @@ class BeamHttpClient
 	
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
 	{
-		return this.beam.executor;
+		return this.executor().map(null);
 	}
 	
 	public function post<T>(path : String, type : Class<T>, args : Array<Dynamic>) : Future<T>
@@ -140,11 +140,14 @@ class BeamHttpClient
 		return this.beam.executor; // Stub
 	}
 	
-	/*function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Future<T>
+	function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Future<T>
 	{
-		return new Future<T>(new CallbackLink<T>()); // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
+		var f : Future<T> = new Future<T>(null);
+		var self : BeamHttpClient = this;
+		
+		return f; // Not sure how to implement this with Haxe. Callbacks seem to work weirdly with Haxe and 
 		// Tinkerbell doesn't have documentation that makes much sense with this stuff
-	}*/
+	}
 	
 	function getUserAgent() : String
 	{
@@ -167,10 +170,10 @@ class BeamHttpClient
 		return null;
 	}
 	
-	/*public function executor<T>() : Future<T>
+	public function executor<T>() : Future<T>
 	{
-		return new Future<T>();
-	}*/
+		return this.beam.executor;
+	}
 	
 	// This is how you make an ImmutableMap type thingy in Haxe (or at least, it's much easier than using a regular Map
 	// and setting it ReadOnly. So Much RAAAAGGGGEEEE about this.)
