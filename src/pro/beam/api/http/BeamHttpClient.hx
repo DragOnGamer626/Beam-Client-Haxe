@@ -144,7 +144,26 @@ class BeamHttpClient
 		return null; // Stub
 	}
 	
-	// Stub
+	function getUserAgent() : String
+	{
+		var version : String;
+		
+		if (this.userAgent == null)
+		{
+			version = checkVersion(this.beam.version);
+			this.userAgent = "BeamClient ver. " + version + " (" + Sys.systemName() + ")";
+		}
+		
+		return this.userAgent;
+	}
+	
+	function checkVersion(version : Float) : String
+	{
+		if (version != 0)
+			return Std.string(version);
+		
+		return null;
+	}
 	
 	function executor<T>() : Future<T>
 	{
@@ -164,5 +183,7 @@ class BeamHttpClient
 		trace(http + "oauthToken:" + oauthToken);
 		trace(http + "httpUserName:" + httpUserName);
 		trace(http + "httpPassword:" + httpPassword);
+		
+		trace(this.getUserAgent());
 	}
 }

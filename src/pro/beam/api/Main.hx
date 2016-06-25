@@ -10,33 +10,32 @@ import pro.beam.api.BeamAPI;
  * ...
  * @author DragOnGamer626
  */
-#if (cpp || neko)
+
 class Main extends Application 
 {	
+	#if (cpp || neko)
 	public function new() 
 	{
 		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);
 		MainHelper.init(beam);
 		super();
 	}
-}
-#end
-
-#if (flash || js || html5)
-class Main extends Application
-{
+	
+	#elseif (flash || js || html5)
 	public static function main()
 	{
 		var beam : BeamAPI = new BeamAPI(MainHelper.URL, MainHelper.token, MainHelper.httpUN, MainHelper.httpPW);
 		MainHelper.init(beam);
 	}
+	#end
+	
 }
-#end
 
 class MainHelper
 {
 	public static function init(beam : BeamAPI)
 	{
+		beam.version = 0.1;
 		beam.run();
 	}
 	

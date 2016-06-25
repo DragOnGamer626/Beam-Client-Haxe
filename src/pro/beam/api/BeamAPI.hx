@@ -20,6 +20,7 @@ import tink.core.Future;
  */
 class BeamAPI
 {
+	public var version(default, set) : Float;
 	public var uri(default, set) : Url;
 	public var oauthToken(default, set) : String;
 	public var httpUserName(default, set) : String;
@@ -46,6 +47,11 @@ class BeamAPI
 		checkConstructorParams(uri, oauthToken, httpUserName, httpPassword);
 		this.http = new BeamHttpClient(this, handler, oauthToken, httpUserName, httpPassword);
 
+	}
+		
+	function set_version(version : Float)
+	{
+		return this.version = version;
 	}
 	
 	function set_uri(uri) 
