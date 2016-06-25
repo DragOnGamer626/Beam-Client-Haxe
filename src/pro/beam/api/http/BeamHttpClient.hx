@@ -1,13 +1,18 @@
 package pro.beam.api.http;
 
+import tink.Url;
 import tink.core.Any;
 import tink.core.Future;
 import tink.core.Pair;
 import tink.http.Method;
 import tink.http.Header;
+import tink.http.Request.IncomingRequest;
+import tink.http.Request.IncomingRequestBody;
+import tink.http.Request.IncomingRequestHeader;
+import tink.url.Auth;
+import tink.url.Host;
 
 import pro.beam.api.BeamAPI;
-
 
 /**
  * ...
@@ -17,7 +22,8 @@ class BeamHttpClient
 {
 	@:protected var beam : BeamAPI;
 	@:protected var handler : HttpCompleteResponseHandler;
-	@:protected var cookieStore : Header;
+	@:protected var cookieStore : IncomingRequestHeader;
+	@:protected var request : IncomingRequest;
 		
 	public var userAgent(default, set) : String;
 	public var oauthToken(default, set) : String;
@@ -28,7 +34,7 @@ class BeamHttpClient
 	{
 		this.beam = beam;
 		this.handler = handler;
-		this.cookieStore = new Header(); // CookieStore - Yayyyyyy!!!!
+		this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", null); // CookieStore - Yayyyyyy!!!!
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
 		checkHttp(httpUserName, httpPassword);

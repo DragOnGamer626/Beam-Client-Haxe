@@ -7,7 +7,6 @@
 	<source path="src" />
 	
 	<haxelib name="lime" />
-	<haxelib name="http-client" />
 	<haxelib name="tink_core" />
 	<haxelib name="tink_http" />
 	<haxelib name="tink_url" />
