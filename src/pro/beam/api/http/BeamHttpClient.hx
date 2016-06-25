@@ -40,7 +40,6 @@ class BeamHttpClient
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
 		buildCredentials(httpUserName, httpPassword); // Auth is same as CredentialsProvider in Java
-		buildContext(); // IncomingRequestHeader seems to be like HttpClientContext but I might be wrong
 	}
 	
 	function set_userAgent(userAgent : String)
@@ -95,12 +94,7 @@ class BeamHttpClient
 		else
 			cp = null;
 	}
-	
-	function buildContext()
-	{		
-		
-	}
-	
+
 	public function get<T>(path : String, type : Class<T>, args :  Array<Pair<String, Any>>) : Future<T>
 	{
 		return this.executor().map(null);
@@ -135,7 +129,7 @@ class BeamHttpClient
 		
 		var incoming : IncomingRequestHeader = new IncomingRequestHeader(method, uri, Std.string(this.beam.version), header.fields);
 		
-		return new IncomingRequest(incoming.uri, incoming, null);
+		return this.request = new IncomingRequest(incoming.uri, incoming, null);
 	}
 	
 	function makeCallable<T>(request : IncomingRequest, type : Class<T>) : Future<T>
@@ -158,6 +152,8 @@ class BeamHttpClient
 			version = checkVersion(this.beam.version);
 			this.userAgent = "BeamClient ver. " + version + " (" + name + ")";
 		}
+		#else
+		this.userAgent = "Unknown";
 		#end
 		
 		return this.userAgent;
