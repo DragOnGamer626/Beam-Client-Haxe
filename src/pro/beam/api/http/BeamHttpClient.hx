@@ -9,6 +9,7 @@ import tink.http.Header;
 import tink.http.Request.IncomingRequest;
 import tink.http.Request.IncomingRequestBody;
 import tink.http.Request.IncomingRequestHeader;
+import tink.http.StructuredBody;
 import tink.url.Auth;
 import tink.url.Host;
 
@@ -34,7 +35,6 @@ class BeamHttpClient
 	{
 		this.beam = beam;
 		this.handler = handler;
-		this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", null); // CookieStore - Yayyyyyy!!!!
 		
 		checkConstructorParams(oauthToken, httpUserName, httpPassword);
 		checkHttp(httpUserName, httpPassword);
@@ -89,7 +89,13 @@ class BeamHttpClient
 	{
 		if (httpUserName != null && httpPassword != null)
 		{
+			var cp : Auth = new Auth(httpUserName, httpPassword);
+			var header : Header = new Header([HeaderField.ofString("auth:" + Std.string(cp))]);
 			
+			trace(header.get("auth"));
+			
+			this.cookieStore = new IncomingRequestHeader(Method.HEAD, this.beam.uri, "1.1", header.fields); // CookieStore - Yayyyyyy!!!!
+			this.request = new IncomingRequest("http://localhost", cookieStore, null);
 		}
 	}
 	
