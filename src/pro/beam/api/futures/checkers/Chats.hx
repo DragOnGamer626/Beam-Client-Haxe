@@ -39,5 +39,6 @@ class UpdateSettingsChecker extends AbstractChecker
 			started = true;
 			return new UpdateSettingsChecker();
 		}
+		return null;
 	}
 }
