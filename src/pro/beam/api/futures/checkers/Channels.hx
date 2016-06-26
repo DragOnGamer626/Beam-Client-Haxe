@@ -17,6 +17,8 @@ class Channels
 class StatusChecker extends AbstractChecker
 {
 	static var MISSING_PERMISSION_CODE(default, never) : Int = 403;
+	static var started : Bool;
+
 	
 	function new()
 	{
@@ -27,6 +29,11 @@ class StatusChecker extends AbstractChecker
 	
 	public static function initialize() : StatusChecker
 	{
-		return new StatusChecker();
+		if (!started)
+		{
+			return new StatusChecker();
+			started = true;
+		}
+		return null;
 	}
 }
