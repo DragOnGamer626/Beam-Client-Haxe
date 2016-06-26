@@ -25,7 +25,7 @@ class TwoFactorFutureChecker extends AbstractChecker
 	static var WRONG_PASSWORD_RESPONSE(default, never) : Int = 401;
 	static var TWOFACTOR_WRONG_CODE_RESPONSE(default, never) : Int = 409;
 	
-	static var started : Bool;
+	static var started : Bool = false;
 	
 	function new()
 	{
@@ -39,8 +39,8 @@ class TwoFactorFutureChecker extends AbstractChecker
 	{
 		if (!started) 
 		{
-			return new TwoFactorFutureChecker();
 			started = true;
+			return new TwoFactorFutureChecker();
 		}
 		return null;
 	}
@@ -51,7 +51,7 @@ class ForgotPasswordChecker extends AbstractChecker
 	static var MISSING_USER_CODE = 404;
 	static var TOO_MANY_REQUESTS = 429;
 	
-	static var started : Bool;
+	static var started : Bool = false;
 	
 	function new()
 	{
@@ -65,8 +65,8 @@ class ForgotPasswordChecker extends AbstractChecker
 	{
 		if (!started)
 		{
-			return new ForgotPasswordChecker();
 			started = true;
+			return new ForgotPasswordChecker();
 		}
 		return null;
 	}
@@ -77,7 +77,7 @@ class ResetPasswordChecker extends AbstractChecker
 	static var MISSING_USER_CODE = 404;
 	static var BAD_REQUEST_CODE = 400;
 	
-	static var started : Bool;
+	static var started : Bool = false;
 	
 	function new()
 	{
@@ -91,8 +91,8 @@ class ResetPasswordChecker extends AbstractChecker
 	{
 		if (!started)
 		{
-			return new ResetPasswordChecker();
 			started = true;
+			return new ResetPasswordChecker();
 		}
 		return null;
 	}
